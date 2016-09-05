@@ -1,0 +1,26 @@
+/* Print CSS only */
+@media print {
+    .site-header,
+    .user-tabs,
+    .cancel-trans,
+    .finish-trans,
+    .citizen,
+    .checkout table thead tr th:last-of-type,
+    .checkout table tbody tr td:last-of-type,
+    .btn-report,
+    .admin-tabs {
+        display: none !important;
+    }
+
+    .print-css {
+        display: block !important;
+    }
+
+    .site-content {
+        margin-top: 0 !important;
+    }
+}
+
+@page {
+    size: landscape;
+}

@@ -1,0 +1,270 @@
+/* General CSS */
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+}
+
+select {
+    cursor: pointer;
+}
+
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+    vertical-align: middle;
+}
+
+.table > tbody > tr:last-of-type > td {
+    padding-bottom: 0;
+}
+
+a:active,
+a:link,
+a:visited,
+a:hover {
+    text-decoration: none;
+}
+
+.body-login {
+    background: #efefef;
+}
+
+.modal-danger {
+    background: #d9534f;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn.focus,
+.btn:focus,
+.btn-danger.focus,
+.btn-danger:focus {
+    outline: 0 !important;
+}
+
+.site-content {
+    margin-top: 65px;
+}
+
+.admin-title {
+    font-size: 150%;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.mt0 {
+    margin-top: 0;
+}
+
+.mb0 {
+    margin-bottom: 0;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.no-padding-left {
+    padding-left: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+.cmd-action {
+    width: 18.15%;
+}
+
+.action-hide {
+    display: none;
+}
+
+.address {
+    width: 30%;
+}
+
+.time {
+    font-size: 15px;
+}
+
+/* Header CSS */
+.site-nav {
+    padding-top: 10px;
+}
+
+.navbar-inverse {
+    background-color: #96281B;
+    border-color: #96281B;
+}
+
+.site-nav p a {
+    display: block;
+}
+
+.site-nav p a img {
+    margin-right: 5px;
+}
+
+.site-nav p a span {
+    color: #fff;
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.site-dropdown {
+    max-width: 200px;
+    width: 100%;
+    margin: .5em 0 0;
+    padding: 0;
+}
+
+.site-dropdown p {
+    list-style: none;
+}
+
+.site-dropdown p a {
+    display: block;
+    color: #fff;
+    font-size: 116%;
+    text-align: right;
+    opacity: .8;
+}
+
+.site-dropdown p:hover a {
+    opacity: 1;
+}
+
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-option {
+    position: absolute;
+    top: 0;
+    display: none;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    background: #fff;
+    -webkit-animation: fadeToTop .2s ease-in-out;
+    -moz-animation: fadeToTop .2s ease-in-out;
+    animation: fadeToTop .2s ease-in-out;
+}
+
+@keyframes fadeToTop {
+    from {
+        top: 15px;
+        opacity: .5;
+    } to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+.dropdown-option li {
+    list-style: none;
+}
+
+.dropdown-option li a {
+    display: block;
+    padding: 7px 8px;
+    color: #909090;
+    font-size: 116%;
+}
+
+.dropdown-option li a:hover {
+    background: #f9f9f9;
+}
+
+/* Admin Tabs CSS */
+.user-tabs li a,
+.admin-tabs li a,
+.add-tabs li a {
+    color: #555;
+    font-size: 116%;
+}
+
+.admin-tabs li a i,
+.add-tabs li a i {
+    position: relative;
+    top: 2px;
+}
+
+/* Login CSS */
+.form-section {
+    max-width: 450px;
+    width: 90%;
+    height: auto;
+    margin: 4em auto;
+    padding: 35px 35px;
+    border: 1px solid;
+    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border-radius: 3px;
+    background: #fff;
+}
+
+.form-title {
+    margin-bottom: 25px;
+}
+
+.form-input {
+    margin-bottom: 15px;
+}
+
+.form-alert,
+.noexist-alert,
+.success-alert {
+    display: none;
+}
+
+/* Admin CSS */
+.form-changepass {
+    margin-bottom: 0;
+}
+
+.supplier-message {
+    resize: none;
+    height: 150px !important;
+}
+
+.accounts-number {
+    font-size: 60px;
+}
+
+/* Footer CSS */
+.site-footer {
+    width: 100%;
+    height: auto;
+    padding: 10px 0;
+}
+
+.site-footer p {
+    margin-bottom: 0;
+    font-size: 92%;
+    letter-spacing: .5px;
+}
+
+/* Print CSS */
+.print-css {
+    display: none;
+}
