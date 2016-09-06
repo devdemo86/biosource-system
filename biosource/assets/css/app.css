@@ -103,6 +103,12 @@ a:hover {
     font-size: 15px;
 }
 
+@media (min-width: 1200px) {
+    .container {
+        width: 1250px !important;
+    }
+}
+
 /* Header CSS */
 .site-nav {
     padding-top: 10px;

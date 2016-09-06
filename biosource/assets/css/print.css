@@ -19,8 +19,12 @@
     .site-content {
         margin-top: 0 !important;
     }
+
+    .container {
+        width: 1250px !important;
+    }
 }
 
 @page {
-    size: landscape;
+    size: portrait;
 }

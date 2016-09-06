@@ -695,7 +695,7 @@ $(function() {
                     getTotal = $('.total-price').text().split('.')[0],
                     getCashier = $('.cashier').text(),
                     getFinalPrice = getCitizenId.trim() == "" ? getTotalTemp : getTotalTemp - (getTotal * 0.20),
-                    getTotalPrice = getFinalPrice % 1 === 0 ? getFinalPrice +'00' : getFinalPrice.toFixed(2);
+                    getTotalPrice = getFinalPrice % 1 === 0 ? getFinalPrice : getFinalPrice.toFixed(2);
                     $('.total-price').text(getTotalPrice);
                     $.ajax({
                         url: '../controls/pos-transaction.php',
