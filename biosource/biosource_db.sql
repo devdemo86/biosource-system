@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2016 at 11:50 AM
+-- Generation Time: Sep 11, 2016 at 04:26 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -40,7 +40,14 @@ CREATE TABLE IF NOT EXISTS `tbl_brand` (
   `brand_holdingcost` int(11) NOT NULL,
   `brand_orderingcost` int(11) NOT NULL,
   `brand_totalqtyperbox` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_brand`
+--
+
+INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`) VALUES
+(1, 'Biogesic', 311, 602, 202, 10, 200, 6, 120, '2021-01-08', 6000, 2000, 10);
 
 -- --------------------------------------------------------
 
@@ -178,7 +185,14 @@ CREATE TABLE IF NOT EXISTS `tbl_product` (
   `product_holdingcost` int(11) NOT NULL,
   `product_orderingcost` int(11) NOT NULL,
   `product_totalqtyperbox` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_product`
+--
+
+INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`) VALUES
+(1, 'Medicol', 301, 602, 203, 10, 10, 6, 120, '2021-09-11', 4000, 2000, 20);
 
 -- --------------------------------------------------------
 
@@ -191,7 +205,16 @@ CREATE TABLE IF NOT EXISTS `tbl_status` (
   `status_remarks` int(11) NOT NULL DEFAULT '1',
   `user_id` int(11) NOT NULL,
   `status_contact` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_status`
+--
+
+INSERT INTO `tbl_status` (`status_id`, `status_remarks`, `user_id`, `status_contact`) VALUES
+(1, 1, 1, '12345678910'),
+(2, 1, 2, '01987456321'),
+(3, 0, 3, '12345678910');
 
 -- --------------------------------------------------------
 
@@ -206,7 +229,14 @@ CREATE TABLE IF NOT EXISTS `tbl_supplier` (
   `supplier_address` text NOT NULL,
   `supplier_status` int(11) NOT NULL DEFAULT '1',
   `supplier_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_supplier`
+--
+
+INSERT INTO `tbl_supplier` (`supplier_id`, `supplier_name`, `supplier_contact`, `supplier_address`, `supplier_status`, `supplier_date`) VALUES
+(1, 'Mercury Drug', 'mercury@gmail.com', 'Mercury address', 1, '2016-09-11 20:10:48');
 
 -- --------------------------------------------------------
 
@@ -220,7 +250,15 @@ CREATE TABLE IF NOT EXISTS `tbl_transaction` (
   `trans_cashier` text NOT NULL,
   `trans_citizen` varchar(100) NOT NULL,
   `trans_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_transaction`
+--
+
+INSERT INTO `tbl_transaction` (`trans_id`, `trans_price`, `trans_cashier`, `trans_citizen`, `trans_date`) VALUES
+(1, '9.60', 'User', 'ID', '2016-09-11 20:19:08'),
+(2, '60.00', 'User', '', '2016-09-11 20:19:46');
 
 -- --------------------------------------------------------
 
@@ -256,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
   `user_username` varchar(225) NOT NULL,
   `user_password` varchar(225) NOT NULL,
   `type_id` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_user`
@@ -264,7 +302,8 @@ CREATE TABLE IF NOT EXISTS `tbl_user` (
 
 INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_mname`, `user_lname`, `user_address`, `user_username`, `user_password`, `type_id`) VALUES
 (1, 'Admin', 'A.', 'Admin', 'Admin address', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1),
-(2, 'User', 'U.', 'User', 'User Address', 'user', '12dea96fec20593566ab75692c9949596833adc9', 2);
+(2, 'User', 'U.', 'User', 'User Address', 'user', '12dea96fec20593566ab75692c9949596833adc9', 2),
+(3, 'Cashier', 'C.', 'Cashier', '123 sample address Manila, The Philippines', 'cashier', 'a5b42198e3fb950b5ab0d0067cbe077a41da1245', 1);
 
 --
 -- Indexes for dumped tables
@@ -344,7 +383,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_category`
 --
@@ -369,22 +408,22 @@ MODIFY `generic_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_status`
 --
 ALTER TABLE `tbl_status`
-MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
-MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_transaction`
 --
 ALTER TABLE `tbl_transaction`
-MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_type`
 --
@@ -394,7 +433,7 @@ MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -4,7 +4,7 @@
 
     $username = "root";
 
-    $password = "";
+    $password = "webdeveloper";
 
     $database = "biosource_db";
 

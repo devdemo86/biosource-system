@@ -563,14 +563,16 @@ $(function() {
         });
     });
 
-    $.ajax({
-        url: '../controls/generate-report.php',
-        type: 'GET',
-        data: {},
-        success: function(result) {
-            $('.table-report').html(result);
-        }
-    });
+    if(document.URL == 'http://system.dev/biosource/application/admin/admin-home') {
+        $.ajax({
+            url: '../controls/generate-report.php',
+            type: 'GET',
+            data: {},
+            success: function(result) {
+                $('.table-report').html(result);
+            }
+        });
+    }
 
     $('.btn-report').click(function() {
         window.print();
