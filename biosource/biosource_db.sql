@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 11, 2016 at 04:26 PM
+-- Generation Time: Sep 12, 2016 at 02:35 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `tbl_brand` (
 --
 
 INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`) VALUES
-(1, 'Biogesic', 311, 602, 202, 10, 200, 6, 120, '2021-01-08', 6000, 2000, 10);
+(1, 'Biogesic', 311, 602, 202, 9, 198, 6, 120, '2021-01-08', 6000, 2000, 10);
 
 -- --------------------------------------------------------
 
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`) VALUES
-(1, 'Medicol', 301, 602, 203, 10, 10, 6, 120, '2021-09-11', 4000, 2000, 20);
+(1, 'Medicol', 301, 602, 203, 10, 6, 6, 120, '2021-09-11', 4000, 2000, 20);
 
 -- --------------------------------------------------------
 
@@ -250,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `tbl_transaction` (
   `trans_cashier` text NOT NULL,
   `trans_citizen` varchar(100) NOT NULL,
   `trans_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_transaction`
@@ -258,7 +258,9 @@ CREATE TABLE IF NOT EXISTS `tbl_transaction` (
 
 INSERT INTO `tbl_transaction` (`trans_id`, `trans_price`, `trans_cashier`, `trans_citizen`, `trans_date`) VALUES
 (1, '9.60', 'User', 'ID', '2016-09-11 20:19:08'),
-(2, '60.00', 'User', '', '2016-09-11 20:19:46');
+(2, '60.00', 'User', '', '2016-09-11 20:19:46'),
+(3, '24.00', 'User', '', '2016-09-12 08:24:50'),
+(4, '132.00', 'User', '', '2016-09-12 08:25:31');
 
 -- --------------------------------------------------------
 
@@ -423,7 +425,7 @@ MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `tbl_transaction`
 --
 ALTER TABLE `tbl_transaction`
-MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tbl_type`
 --

@@ -582,6 +582,32 @@ $(function() {
         $('.user-block, .user-alert-success, .user-alert-invalid, .user-alert-error').addClass('hidden');
     });
 
+    var counter = 0;
+    $('.search-form').keyup(function(e) {
+        e.preventDefault();
+        var getSearch = $(this).serializeArray(),
+            search = $(this).attr('data-code');
+        if($.trim($(this).find('input').val()) != "") {
+            counter++;
+            $.ajax({
+                url: '../controls/search.php',
+                type: 'POST',
+                data: {searchId: getSearch, searchType: search},
+                success: function(result) {
+                    if(result !== 'zero') {
+                        $('.'+ search +'s-content').html(result);
+                    } else {
+                        $('.'+ search +'s-content').html('<tr class="zero"><td colspan="10"><h3 class="mt0"><span class="label label-default">'+ result.replace(result[0], result[0].toUpperCase()) +' Result.</span></h3></td></tr>');
+                    }
+                }
+            });
+        } else {
+            if(counter != 0) {
+                $('.'+ search +'s-content').html('<tr class="zero"><td colspan="10"><h3 class="mt0"><span class="label label-default">Please refresh the page.</span></h3></td></tr>');
+            }
+        }
+    });
+
     var getType = null;
     $('body').delegate('.btn-purchase', 'click', function() {
         var getData = $(this).attr('data-id');

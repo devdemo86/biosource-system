@@ -14,8 +14,22 @@
             <h3 class="panel-title admin-title user-title">Dashboard</h3>
         </div>
         <div class="panel-body">
-            <div class="products">
-                <table class="table table-responsive mb0">
+            <div class="products table-responsive">
+                <form class="search-form clearfix" data-code="product">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control focus" placeholder="Search for Products">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </span>
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                </form>
+                <table class="table mb0">
                     <thead>
                         <tr>
                             <th>Product Name</th>
@@ -34,8 +48,22 @@
                     </tbody>
                 </table>
             </div>
-            <div class="brands hidden">
-                <table class="table table-responsive mb0">
+            <div class="brands table-responsives hidden">
+                <form class="search-form clearfix" data-code="brand">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control focus" placeholder="Search for Brands">
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </span>
+                        </div>
+                        <span class="help-block"></span>
+                    </div>
+                </form>
+                <table class="table mb0">
                     <thead>
                         <tr>
                             <th>Brands Name</th>
@@ -54,7 +82,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="checkout hidden">
+            <div class="checkout hidden table-responsive">
                 <div class="clearfix">
                     <div class="pull-left citizen no-padding-left col-lg-4">
                         <form class="input-group">
@@ -71,7 +99,7 @@
                     </p>
                     <p class="citizen-discount print-css"></p>
                 </div>
-                <table class="table table-responsive mb0">
+                <table class="table mb0">
                     <thead>
                         <tr>
                             <th class="text-center">ID</th>
