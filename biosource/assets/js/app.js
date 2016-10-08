@@ -746,4 +746,29 @@ $(function() {
         citizen = true;
     });
 
+    $('.dashboard .list-group-item').click(function(e) {
+        e.preventDefault();
+        var getHref = $(this).attr('href').replace('#', '');
+        alert(getHref);
+    });
+
+    $('.btn-report-summary').click(function() {
+        var getCode = $(this).attr('data-code');
+            if(getCode === 'all') {
+                $(this).attr('data-code', 'individual');
+                getCode = 'individual';
+            } else {
+                $(this).attr('data-code', 'all');
+                getCode = 'all';
+            }
+            $.ajax({
+                url: '../controls/generate-report.php',
+                type: 'POST',
+                data: {datacode: getCode},
+                success: function(result) {
+                    $('.table-report').html(result);
+                }
+            });
+    });
+
 });

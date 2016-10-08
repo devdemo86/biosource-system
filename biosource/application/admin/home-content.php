@@ -377,6 +377,9 @@
             </div>
             <div class="generate-report hidden">
                 <div class="clearfix">
+                    <button type="button" class="btn btn-primary pull-left btn-report-summary" data-code="all">
+                        Summary Details
+                    </button>
                     <button type="button" class="btn btn-primary pull-right btn-report">
                         Generate Report &nbsp;( <span class="glyphicon glyphicon-print"></span> Print )
                     </button>
