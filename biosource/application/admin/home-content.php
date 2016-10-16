@@ -674,6 +674,24 @@
         </div>
     </div>
 </div>
+<div class="summary-modal modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-update-inventory">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title text-white">Summary</h4>
+                </div>
+                <div class="modal-body summary-content"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?php else: ?>
     <?php header("Location: ../login"); ?>
 <?php endif; ?>

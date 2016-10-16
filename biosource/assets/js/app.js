@@ -749,7 +749,16 @@ $(function() {
     $('.dashboard .list-group-item').click(function(e) {
         e.preventDefault();
         var getHref = $(this).attr('href').replace('#', '');
-        alert(getHref);
+        $('.summary-content').html('');
+        $.ajax({
+            url: '../controls/summary.php',
+            type: 'POST',
+            data: {type: getHref},
+            success: function(response) {
+                $('.summary-content').html(response);
+                $('.summary-modal').modal();
+            }
+        });
     });
 
     $('.btn-report-summary').click(function() {
