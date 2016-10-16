@@ -16,7 +16,7 @@
 
             $finalprice = $citizen == null ? number_format($total, 2) : number_format($total * 0.20 , 2);
 
-            $cashier = $_POST['cashier'];
+            $cashier = $_SESSION['user_id'];
 
             $query = "INSERT INTO tbl_transaction(`trans_citizen`, `trans_price`, `trans_cashier`) VALUES('".$citizen."', '".$finalprice."', '".$cashier."')";
 
