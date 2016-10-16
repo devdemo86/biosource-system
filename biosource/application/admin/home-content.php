@@ -31,6 +31,7 @@
                     <li><a href="#"><i class="glyphicon glyphicon-tag"></i> &nbsp;Brand</a></li>
                     <li><a href="#"><i class="glyphicon glyphicon-user"></i> &nbsp;User</a></li>
                     <li><a href="#"><i class="glyphicon glyphicon-user"></i> &nbsp;Supplier</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> &nbsp;CMS</a></li>
                 </ul>
                 <span class="help-block"></span>
                 <div class="product">
@@ -307,6 +308,70 @@
                         </div>
                     </form>
                 </div>
+                <div class="cms hidden">
+                    <div class="clearfix">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <form class="cms-form-add-cms" data-code="generic" autocomplete="off">
+                                            <div class="form-group">
+                                                <label for="generic-name">Generic Name:</label>
+                                                <input type="text" name="generic-name-opt" placeholder="Generic Name" class="form-control" required="required">
+                                            </div>
+                                            <div class="clearfix">
+                                                <button type="submit" class="btn btn-primary pull-right">
+                                                    <i class="glyphicon glyphicon-plus"></i> &nbsp;Add
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="clearfix">
+                                            <ul class="list-item-display">
+                                                <?php require_once('../controls/generic-cms.php'); ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <form class="cms-form-add-cms" data-code="dosage" autocomplete="off">
+                                            <div class="form-group">
+                                                <label for="dosage">Dosage:</label>
+                                                <input type="text" name="dosage-opt" placeholder="Dosage" class="form-control" required="required">
+                                            </div>
+                                            <div class="clearfix">
+                                                <button type="submit" class="btn btn-primary pull-right">
+                                                    <i class="glyphicon glyphicon-plus"></i> &nbsp;Add
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="clearfix">
+                                            <ul class="list-item-display">
+                                                <?php require_once('../controls/dosage-cms.php'); ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <form class="cms-form-add-cms" data-code="category" autocomplete="off">
+                                            <div class="form-group">
+                                                <label for="generic-name">Category Name:</label>
+                                                <input type="text" name="category-name-opt" placeholder="Category Name" class="form-control" required="required">
+                                            </div>
+                                            <div class="clearfix">
+                                                <button type="submit" class="btn btn-primary pull-right">
+                                                    <i class="glyphicon glyphicon-plus"></i> &nbsp;Add
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="clearfix">
+                                            <ul class="list-item-display">
+                                                <?php require_once('../controls/category-cms.php'); ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="manage-user hidden">
                 <p class="filter-accounts clearfix mb10">
@@ -378,7 +443,7 @@
             <div class="generate-report hidden">
                 <div class="clearfix">
                     <button type="button" class="btn btn-primary pull-left btn-report-summary" data-code="all">
-                        Summary Details
+                        Summary Details &nbsp;<i class="glyphicon glyphicon-list-alt"></i>
                     </button>
                     <button type="button" class="btn btn-primary pull-right btn-report">
                         Generate Report &nbsp;( <span class="glyphicon glyphicon-print"></span> Print )

@@ -766,9 +766,11 @@ $(function() {
             if(getCode === 'all') {
                 $(this).attr('data-code', 'individual');
                 getCode = 'individual';
+                $(this).html('Specific Details &nbsp;<i class="glyphicon glyphicon-list-alt"></i>');
             } else {
                 $(this).attr('data-code', 'all');
                 getCode = 'all';
+                $(this).html('Summary Details &nbsp;<i class="glyphicon glyphicon-list-alt"></i>');
             }
             $.ajax({
                 url: '../controls/generate-report.php',
@@ -778,6 +780,20 @@ $(function() {
                     $('.table-report').html(result);
                 }
             });
+    });
+
+    $('.cms-form-add-cms').submit(function(e) {
+        e.preventDefault();
+        var getVal = $(this).serializeArray()[0].value,
+            getCode = $(this).attr('data-code');
+        $.ajax({
+            url: '../controls/add-cms.php',
+            type: 'POST',
+            data: {name: getVal, code: getCode},
+            success: function(response) {
+                alert(response);
+            }
+        });
     });
 
 });
