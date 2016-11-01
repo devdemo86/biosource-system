@@ -473,7 +473,7 @@ $(function() {
         });
     });
 
-    $('a[href^="#prod-update"]').click(function(e) {
+    $('body').delegate('a[href^="#prod-update"]', 'click', function(e) {
         e.preventDefault();
         var product = $(this).attr('data-id');
         $('.form-update-inventory').attr('data-id', product);
@@ -517,7 +517,7 @@ $(function() {
     });
 
     var inventory = null;
-    $('a[href^="#prod-delete"]').click(function(e) {
+    $('body').delegate('a[href^="#prod-delete"]', 'click', function(e) {
         e.preventDefault();
         inventory = $(this).attr('data-id');
         $('.inventory-delete-modal').modal();
@@ -704,7 +704,12 @@ $(function() {
 
     var citizen = false,
         getTotalTemp = 0,
-        getTotalTempBool = true;
+        getTotalTempBool = true,
+        getCitizenId,
+        getTotal,
+        getCashier,
+        getFinalPrice,
+        getTotalPrice;
     $('.finish-trans').click(function() {
         console.log()
         if($('.checkout-content').find('tr.zero')[0]) {
@@ -719,26 +724,45 @@ $(function() {
                     getTotalTemp = $('.total-price').text().split('.')[0] +'.00';
                     getTotalTempBool = false;
                 }
-                var getCitizenId = $('.citizen-id').val(),
-                    getTotal = $('.total-price').text().split('.')[0],
-                    getCashier = $('.cashier').text(),
-                    getFinalPrice = getCitizenId.trim() == "" ? getTotalTemp : getTotalTemp - (getTotal * 0.20),
-                    getTotalPrice = getFinalPrice % 1 === 0 ? getFinalPrice : getFinalPrice.toFixed(2);
-                    $('.total-price').text(getTotalPrice);
-                    $.ajax({
-                        url: '../controls/pos-transaction.php',
-                        type: 'POST',
-                        data: {proceed: true, citizen: getCitizenId, total: getTotalPrice, cashier: getCashier},
-                        success: function(result) {
-                            window.print();
-                        },
-                        error: function() {
-                            $(location).attr('href', '../errors/dberror');
-                        }
-                    });
+                getCitizenId = $('.citizen-id').val();
+                getTotal = $('.total-price').text().split('.')[0];
+                getCashier = $('.cashier').text();
+                getFinalPrice = getCitizenId.trim() == "" ? getTotalTemp : getTotalTemp - (getTotal * 0.20);
+                getTotalPrice = getFinalPrice % 1 === 0 ? getFinalPrice : getFinalPrice.toFixed(2);
+                $('.total-price').text(getTotalPrice);
+                $('.payment-check').val(getTotalPrice);
+                $('.payment-modal').modal();
             } else {
                 $('.citizen-id').focus();
             }
+        }
+    });
+
+    $('.payment-message').addClass('hidden');
+
+    $('.payment-cash input').keyup(function() {
+        $('.payment-message').addClass('hidden');
+    });
+
+    $('.payment-cash').submit(function(e) {
+        e.preventDefault();
+        var getCashierInput = $(this).serializeArray()[0].value,
+            getCheck = parseInt(getCashierInput) - parseInt(getTotalPrice);
+        if(parseInt(getCashierInput) > parseInt(getTotalPrice)) {
+            $('.payment-modal').modal('hide');
+            $.ajax({
+                url: '../controls/pos-transaction.php',
+                type: 'POST',
+                data: {proceed: true, citizen: getCitizenId, total: getTotalPrice, cashier: getCashier},
+                success: function(result) {
+                    window.print();
+                },
+                error: function() {
+                    $(location).attr('href', '../errors/dberror');
+                }
+            });
+        } else {
+            $('.payment-message').removeClass('hidden');
         }
     });
 

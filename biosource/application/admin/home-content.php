@@ -460,7 +460,9 @@
                             <th>Transaction Responsible</th>
                         </tr>
                     </thead>
-                    <tbody class="table-report"></tbody>
+                    <tbody class="table-report">
+                        <?php require_once('../controls/generate-report.php'); ?>
+                    </tbody>
                 </table>
             </div>
             <div class="notify-supplier hidden">

@@ -178,6 +178,47 @@
         </div>
     </div>
 </div>
+<div class="payment-modal modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="payment-cash">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title title-user text-white">Payment</h4>
+                </div>
+                <div class="modal-body purchase-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="payment-to-check">Total:</label>
+                                        <input type="text" readonly="readonly" class="form-control payment-check">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="payment-all-cash">Cash:</label>
+                                        <input type="number" name="payment-cash-all" placeholder="Enter cash here" class="form-control" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning mb0 payment-message hiddent">
+                        <strong>NOTE: </strong> You cannot proceed if the cash is less than in your total payment.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btn-payment">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <?php else: ?>
     <?php header("Location: ../login"); ?>
 <?php endif; ?>
