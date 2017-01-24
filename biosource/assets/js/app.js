@@ -32,9 +32,16 @@ $(function() {
                 type: "POST",
                 data: {userAuth: auth},
                 success: function(result) {
-                    if(result !== "zero") {
+                    if(result !== "zero" && result != "username" && result != "password") {
                         $(location).attr('href', '../application/'+ result);
                     } else {
+                        if(result == "username") {
+                            $('.alert').find('strong').text('Username Error!');
+                        } else if(result == "password") {
+                            $('.alert').find('strong').text('Password Error!');
+                        } else {
+                            $('.alert').find('strong').text('No Match Found!');
+                        }
                         $('.form-alert').css('margin-bottom', 0).toggle();
                     }
                 },

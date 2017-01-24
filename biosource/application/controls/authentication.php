@@ -45,7 +45,27 @@
 
         } else {
 
-            echo "zero";
+            $query = "SELECT user_id FROM tbl_user WHERE user_username = '".$credentials[0]."'";
+
+            $sql = mysqli_query($connection, $query);
+
+            $password = "SELECT user_id FROM tbl_user WHERE user_password = '".$credentials[1]."'";
+
+            $sqlpass = mysqli_query($connection, $password);
+
+            if($sql->num_rows == 0) {
+
+                echo 'username';
+
+            } else if($sqlpass->num_rows == 0) {
+
+                echo 'password';
+
+            } else {
+
+                echo 'zero';
+
+            }
 
         }
 

@@ -1,0 +1,24 @@
+Task:
+
+Fix Stock reduction =
+
+Voiding error =
+
+discount applied seperate product =
+
+cancel order should add to the product qty =
+
+Finish
+
+adding redundancy = Fixed
+ - CMS = Done
+ - Supplier = Done
+ - User = Done
+ - Brand = Done
+ - Product = Done
+
+wrong input indicates by hightlight = Done
+
+Confirm password = Done
+
+Purchasing impossible qty = Done
