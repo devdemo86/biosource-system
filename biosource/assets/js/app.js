@@ -180,6 +180,7 @@ $(function() {
             type: 'POST',
             data: {user: getUser},
             success: function(result) {
+                alert(result);
                 $('.user-button-add').text('Submit').css('opacity', 1).removeAttr('disabled');
                 if(result === 'success') {
                     $('.process-block, .process-alert-success').removeClass('hidden');
@@ -641,6 +642,7 @@ $(function() {
             getData = $(this).serializeArray();
         if(piece.trim() == "" || piece == null) {
             if(box.trim() == "" || box == null) {
+                $('.qtyperbox').focus();
                 $('.user-block, .user-alert-invalid').removeClass('hidden');
                 $('.btn-purchase-proceed').text('Submit').css('opacity', 1).removeAttr('disabled');
             } else {
@@ -648,6 +650,7 @@ $(function() {
             }
         } else if(box.trim() == "" || box == null) {
             if(piece.trim() == "" || piece == null) {
+                $('.qtyperpiece').focus();
                 $('.user-block, .user-alert-invalid').removeClass('hidden');
                 $('.btn-purchase-proceed').text('Submit').css('opacity', 1).removeAttr('disabled');
             } else {
@@ -815,7 +818,11 @@ $(function() {
             type: 'POST',
             data: {name: getVal, code: getCode},
             success: function(response) {
-                alert(response);
+                if(response == 'success') {
+                    $('.'+ getCode).append('<li>'+ getVal +'</li>');
+                } else {
+                    alert('Name already exist');
+                }
             }
         });
     });

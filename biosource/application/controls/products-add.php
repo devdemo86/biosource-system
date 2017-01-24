@@ -10,34 +10,47 @@
 
         if(isset($_POST['product'])) {
 
-            $product = '';
+            $slog = strtolower($_POST['product'][0]['value']);
 
-            foreach ($_POST['product'] as $key => $info) {
+            $exist = "SELECT product_id FROM tbl_product WHERE product_name = '".$slog."'";
 
-                $product .= "'".$info['value']."'";
+            $queryexist = mysqli_query($connection, $exist);
 
-                if($info !== end($_POST['product'])) {
+            if($queryexist->num_rows == 0) {
 
-                    $product .= ', ';
+                $product = '';
+
+                foreach ($_POST['product'] as $key => $info) {
+
+                    $product .= "'".$info['value']."'";
+
+                    if($info !== end($_POST['product'])) {
+
+                        $product .= ', ';
+
+                    }
 
                 }
 
-            }
+                $insert = "tbl_product(`product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`,";
+                $insert .= " `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`)";
 
-            $insert = "tbl_product(`product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`,";
-            $insert .= " `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`)";
+                $query = "INSERT INTO ".$insert." VALUES(".$product.")";
 
-            $query = "INSERT INTO ".$insert." VALUES(".$product.")";
+                $sql = mysqli_query($connection, $query);
 
-            $sql = mysqli_query($connection, $query);
+                if((int) $sql === 1) {
 
-            if((int) $sql === 1) {
+                    echo 'success';
 
-                echo 'success';
+                } else {
 
+                    echo 'id-error';
+
+                }
             } else {
 
-                echo 'id-error';
+                echo 'exist';
 
             }
 

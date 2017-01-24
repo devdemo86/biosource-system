@@ -20,7 +20,7 @@
             $content .= '<div class="form-group">';
                 $content .= '<label for="product-name">Product Name:</label>';
                 $content .= '<input type="text" name="product-name" class="form-control" value="'.$productitem['product_name'].'" ';
-                $content .= 'placeholder="Product Name" required="required">';
+                $content .= 'placeholder="Product Name" required="required" readonly="readonly">';
             $content .= '</div>';
             $content .= '<div class="form-group clearfix">';
                 $content .= '<div class="col-lg-12">';

@@ -16,49 +16,91 @@
 
             if($code == 'generic') {
 
-                $query = "INSERT INTO tbl_generic VALUES('', generic_code + 1, '".$name."')";
+                $slog = strtolower($name);
 
-                $sql = mysqli_query($connection, $query);
+                $exist = "SELECT * FROM tbl_generic WHERE slog = TRIM('".$slog."')";
 
-                if((int) $sql == 1) {
+                $query = mysqli_query($connection, $exist);
 
-                    echo 'success';
+                if($query->num_rows == 0) {
+
+                    $insert = "INSERT INTO tbl_generic VALUES('', generic_code + 1, '".$name."', '".str_replace(' ', '-', $slog)."')";
+
+                    $sql = mysqli_query($connection, $insert);
+
+                    if((int) $sql == 1) {
+
+                        echo 'success';
+
+                    } else {
+
+                        echo 'error';
+
+                    }
 
                 } else {
 
-                    echo 'error';
+                    echo 'exist';
 
                 }
 
             } else if($code == 'dosage') {
 
-                $query = "INSERT INTO tbl_dosage VALUES('', dosage_code + 1, '".$name."')";
+                $slog = strtolower($name);
 
-                $sql = mysqli_query($connection, $query);
+                $exist = "SELECT * FROM tbl_dosage WHERE slog = TRIM('".$slog."')";
 
-                if((int) $sql == 1) {
+                $query = mysqli_query($connection, $exist);
 
-                    echo 'success';
+                if($query->num_rows == 0) {
+
+                    $insert = "INSERT INTO tbl_dosage VALUES('', dosage_code + 1, '".$name."', '".str_replace(' ', '-', $slog)."')";
+
+                    $sql = mysqli_query($connection, $insert);
+
+                    if((int) $sql == 1) {
+
+                        echo 'success';
+
+                    } else {
+
+                        echo 'error';
+
+                    }
 
                 } else {
 
-                    echo 'error';
+                    echo 'exist';
 
                 }
 
             } else {
 
-                $query = "INSERT INTO tbl_category VALUES('', category_code + 1, '".$name."')";
+                $slog = strtolower($name);
 
-                $sql = mysqli_query($connection, $query);
+                $exist = "SELECT * FROM tbl_category WHERE slog = TRIM('".$slog."')";
 
-                if((int) $sql == 1) {
+                $query = mysqli_query($connection, $exist);
 
-                    echo 'success';
+                if($query->num_rows == 0) {
+
+                    $insert = "INSERT INTO tbl_category VALUES('', category_code + 1, '".$name."', '".str_replace(' ', '-', $slog)."')";
+
+                    $sql = mysqli_query($connection, $insert);
+
+                    if((int) $sql == 1) {
+
+                        echo 'success';
+
+                    } else {
+
+                        echo 'error';
+
+                    }
 
                 } else {
 
-                    echo 'error';
+                    echo 'exist';
 
                 }
 

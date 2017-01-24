@@ -241,8 +241,8 @@
                                         <div class="form-group">
                                             <label for="type-id">Account Type:</label>
                                             <select class="form-control" name="type-id">
-                                                <option value="1">User</option>
-                                                <option value="2">Admin</option>
+                                                <option value="2">User</option>
+                                                <option value="1">Admin</option>
                                             </select>
                                         </div>
                                     </div>
@@ -326,7 +326,7 @@
                                             </div>
                                         </form>
                                         <div class="clearfix">
-                                            <ul class="list-item-display">
+                                            <ul class="list-item-display generic">
                                                 <?php require_once('../controls/generic-cms.php'); ?>
                                             </ul>
                                         </div>
@@ -344,7 +344,7 @@
                                             </div>
                                         </form>
                                         <div class="clearfix">
-                                            <ul class="list-item-display">
+                                            <ul class="list-item-display dosage">
                                                 <?php require_once('../controls/dosage-cms.php'); ?>
                                             </ul>
                                         </div>
@@ -362,7 +362,7 @@
                                             </div>
                                         </form>
                                         <div class="clearfix">
-                                            <ul class="list-item-display">
+                                            <ul class="list-item-display category">
                                                 <?php require_once('../controls/category-cms.php'); ?>
                                             </ul>
                                         </div>
