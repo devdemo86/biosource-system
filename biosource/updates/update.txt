@@ -1,5 +1,15 @@
 Task:
 
+Fix Stock reduction =
+
+Voiding error =
+
+discount applied seperate product =
+
+cancel order should add to the product qty =
+
+Finish
+
 adding redundancy = Fixed
  - CMS = Done
  - Supplier = Done
@@ -11,12 +21,4 @@ wrong input indicates by hightlight = Done
 
 Confirm password = Done
 
-Fix Stock reduction =
-
-Voiding error =
-
-Purchasing impossible qty =
-
-discount applied seperate product =
-
-cancel order should add to the product qty =
+Purchasing impossible qty = Done

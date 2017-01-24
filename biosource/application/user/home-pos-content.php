@@ -149,11 +149,11 @@
                         <div class="col-lg-12">
                             <div class="no-padding-left col-lg-6">
                                 <label for="qtyperpiece">Quantity (Piece):</label>
-                                <input type="number" class="form-control qtyperpiece">
+                                <input type="number" class="form-control qtyperpiece" min="0" max="100">
                             </div>
                             <div class="no-padding col-lg-6">
                                 <label for="qtyperbox">Quantity (Box):</label>
-                                <input type="number" class="form-control qtyperbox">
+                                <input type="number" class="form-control qtyperbox" min="0" max="100">
                             </div>
                         </div>
                         <div class="col-lg-12">
