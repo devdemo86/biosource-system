@@ -148,15 +148,27 @@
                 </div>
                 <div class="modal-body purchase-content">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="no-padding-left col-lg-6">
-                                <label for="qtyperpiece">Quantity (Piece):</label>
-                                <input type="number" class="form-control qtyperpiece" min="0" max="100">
+                        <div class="col-lg-12 cart-selection">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-4">
+                                <button type="button" class="btn btn-primary btn-block btn-cart" data-code="piece">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Pieces
+                                </button>
                             </div>
-                            <div class="no-padding col-lg-6">
-                                <label for="qtyperbox">Quantity (Box):</label>
-                                <input type="number" class="form-control qtyperbox" min="0" max="100">
+                            <div class="col-lg-4">
+                                <button type="button" class="btn btn-primary btn-block btn-cart" data-code="box">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Boxes
+                                </button>
                             </div>
+                            <div class="col-lg-2"></div>
+                        </div>
+                        <div class="col-lg-12 cart-piece hidden">
+                            <label for="qtyperpiece">Quantity (Piece):</label>
+                            <input type="number" class="form-control qtyperpiece" min="1" max="100">
+                        </div>
+                        <div class="col-lg-12 cart-box hidden">
+                            <label for="qtyperbox">Quantity (Box):</label>
+                            <input type="number" class="form-control qtyperbox" min="1" max="100">
                         </div>
                         <div class="col-lg-12">
                             <span class="help-block user-block hidden"></span>
@@ -172,7 +184,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer cart-footer hidden">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary btn-purchase-proceed">Submit</button>
                 </div>

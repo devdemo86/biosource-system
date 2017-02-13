@@ -697,6 +697,8 @@ $(function() {
         $('.form-pos-purchase').attr('data-id', getData);
         $('.title-user').text($(this).parents('tr').find('.purchase-name').text());
         $('.user-block, .user-alert-success, .user-alert-invalid, .user-alert-error').addClass('hidden');
+        $('.cart-piece, .cart-box, .cart-footer').addClass('hidden');
+        $('.cart-selection').removeClass('hidden');
         $.ajax({
             url: '../controls/pos-check.php',
             type: 'POST',
@@ -711,6 +713,15 @@ $(function() {
                 $(location).attr('href', '../errors/dberror');
             }
         });
+    });
+
+    $('.btn-cart').click(function() {
+        $('.cart-selection').addClass('hidden');
+        var getCode = $(this).attr('data-code'),
+            showHide = getCode == 'piece' ? 'box' : 'piece';
+        $('.cart-'+ getCode).removeClass('hidden');
+        $('.cart-'+ showHide).addClass('hidden');
+        $('.cart-footer').removeClass('hidden');
     });
 
     $('.form-pos-purchase').submit(function(e) {
@@ -795,7 +806,6 @@ $(function() {
         getFinalPrice,
         getTotalPrice;
     $('.finish-trans').click(function() {
-        console.log()
         if($('.checkout-content').find('tr.zero')[0]) {
             $('.user-alert-finish-trans, .delete-block').removeClass('hidden');
         } else {
