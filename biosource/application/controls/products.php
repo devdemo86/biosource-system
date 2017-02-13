@@ -13,7 +13,7 @@
         require_once('../controls/connection.php');
 
         $prod = "SELECT * FROM tbl_product p INNER JOIN tbl_generic g ON p.generic_code = g.generic_code INNER JOIN tbl_category c ON p.category_code = c.category_code";
-        $prod .= " INNER JOIN tbl_dosage d ON p.dosage_code = d.dosage_code ORDER BY p.product_name ASC";
+        $prod .= " INNER JOIN tbl_dosage d ON p.dosage_code = d.dosage_code GROUP BY p.product_id ORDER BY p.product_name ASC";
 
         $sqlprod = mysqli_query($connection, $prod);
 

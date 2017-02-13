@@ -33,7 +33,7 @@
                 }
 
                 $insert = "tbl_product(`product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`,";
-                $insert .= " `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`)";
+                $insert .= " `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`, `product_supplier`)";
 
                 $query = "INSERT INTO ".$insert." VALUES(".$product.")";
 

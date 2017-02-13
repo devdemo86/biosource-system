@@ -33,7 +33,7 @@
                 }
 
                 $insert = "tbl_brand(`brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`,";
-                $insert .= " `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`)";
+                $insert .= " `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`)";
 
                 $query = "INSERT INTO ".$insert." VALUES(".$brand.")";
 

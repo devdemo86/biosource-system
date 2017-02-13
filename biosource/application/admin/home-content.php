@@ -27,18 +27,18 @@
             </div>
             <div class="add hidden">
                 <ul class="nav nav-tabs nav-justified add-tabs">
-                    <li class="active"><a href="#"><i class="glyphicon glyphicon-barcode"></i> &nbsp;Product</a></li>
-                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> &nbsp;Brand</a></li>
+                    <li class="active"><a href="#"><i class="glyphicon glyphicon-barcode"></i> &nbsp;Branded</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-tag"></i> &nbsp;Generic</a></li>
                     <li><a href="#"><i class="glyphicon glyphicon-user"></i> &nbsp;User</a></li>
                     <li><a href="#"><i class="glyphicon glyphicon-user"></i> &nbsp;Supplier</a></li>
                     <li><a href="#"><i class="glyphicon glyphicon-list-alt"></i> &nbsp;CMS</a></li>
                 </ul>
                 <span class="help-block"></span>
-                <div class="product">
+                <div class="branded">
                     <form class="col-lg-12 form-add-product" autocomplete="off">
                         <div class="form-group">
-                            <label for="product-name">Product Name:</label>
-                            <input type="text" name="product-name" class="form-control" placeholder="Product Name" required="required">
+                            <label for="product-name">Branded Name:</label>
+                            <input type="text" name="product-name" class="form-control" placeholder="Branded Name" required="required">
                         </div>
                         <span class="help-block"></span>
                         <div class="form-group clearfix">
@@ -67,21 +67,21 @@
                             </div>
                             <div class="no-padding col-lg-3">
                                 <label for="quantity-box">Quantity (Box):</label>
-                                <input type="number" name="prod-qtyperbox" placeholder="Box" class="form-control" required="required">
+                                <input type="number" name="prod-qtyperbox" placeholder="Box" class="form-control" required="required" min="1">
                             </div>
                             <div class="no-padding-right col-lg-3">
                                 <label for="quantity-piece">Quantity (Piece):</label>
-                                <input type="number" name="prod-qtyperpiece" placeholder="Piece" class="form-control" required="required">
+                                <input type="number" name="prod-qtyperpiece" placeholder="Piece" class="form-control" required="required" min="1">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <div class="no-padding-left col-lg-4">
                                 <label for="price-box">Price (Piece):</label>
-                                <input type="number" name="prod-priceperpiece" placeholder="Php" class="form-control" required="required">
+                                <input type="number" name="prod-priceperpiece" placeholder="Php" class="form-control" required="required" min="1">
                             </div>
                             <div class="no-padding-right col-lg-4">
                                 <label for="price-piece">Price (Box):</label>
-                                <input type="number" name="prod-priceperbox" placeholder="Php" class="form-control" required="required">
+                                <input type="number" name="prod-priceperbox" placeholder="Php" class="form-control" required="required" min="1">
                             </div>
                             <div class="no-padding-right col-lg-4">
                                 <label for="expire-date">Expiration Date:</label>
@@ -89,17 +89,23 @@
                             </div>
                         </div>
                         <div class="mb10 clearfix">
-                            <div class="no-padding-left col-lg-4">
+                            <div class="no-padding-left col-lg-3">
                                 <label for="holding-cost">Holding Cost:</label>
-                                <input type="number" name="prod-holdingcost" placeholder="Php" class="form-control" required="required">
+                                <input type="number" name="prod-holdingcost" placeholder="Php" class="form-control" required="required" min="1">
                             </div>
-                            <div class="no-padding-right col-lg-4">
+                            <div class="no-padding-right col-lg-3">
                                 <label for="ordering-cost">Ordering Cost:</label>
-                                <input type="number" name="prod-orderingcost" placeholder="Php" class="form-control" required="required">
+                                <input type="number" name="prod-orderingcost" placeholder="Php" class="form-control" required="required" min="1">
                             </div>
-                            <div class="no-padding-right col-lg-4">
+                            <div class="no-padding-right col-lg-3">
                                 <label for="total-quantity">Total Quantity (Box):</label>
-                                <input type="number" name="prod-qtyperbox" placeholder="Total" class="form-control" required="required">
+                                <input type="number" name="prod-qtyperbox" placeholder="Total" class="form-control" required="required" min="1">
+                            </div>
+                            <div class="no-padding-right col-lg-3">
+                                <label for="supplier">Supplier:</label>
+                                <select class="form-control" name="supplier-account" required="required">
+                                    <?php require('../controls/suppliers-contact.php'); ?>
+                                </select>
                             </div>
                         </div>
                         <div class="mb10">
@@ -119,11 +125,11 @@
                         </div>
                     </form>
                 </div>
-                <div class="brand hidden">
+                <div class="generic hidden">
                     <form class="col-lg-12 form-add-brand" autocomplete="off">
                         <div class="form-group clearfix">
-                            <label for="brand-name">Brand Name:</label>
-                            <input type="text" name="brand-name" class="form-control" placeholder="Brand Name" required="required">
+                            <label for="brand-name">Product Name:</label>
+                            <input type="text" name="brand-name" class="form-control" placeholder="Product Name" required="required">
                         </div>
                         <span class="help-block"></span>
                         <div class="form-group clearfix">
@@ -152,21 +158,21 @@
                             </div>
                             <div class="no-padding col-lg-3">
                                 <label for="quantity-box">Quantity (Box):</label>
-                                <input type="number" name="brand-qtyperbox" placeholder="Box" class="form-control" required="required">
+                                <input type="number" name="brand-qtyperbox" placeholder="Box" class="form-control" required="required" min="1">
                             </div>
                             <div class="no-padding-right col-lg-3">
                                 <label for="quantity-piece">Quantity (Piece):</label>
-                                <input type="number" name="brand-qtyperpiece" placeholder="Piece" class="form-control" required="required">
+                                <input type="number" name="brand-qtyperpiece" placeholder="Piece" class="form-control" required="required" min="1">
                             </div>
                         </div>
                         <div class="form-group clearfix">
                             <div class="no-padding-left col-lg-4">
                                 <label for="price-box">Price (Piece):</label>
-                                <input type="number" name="brand-priceperpiece" placeholder="Php" class="form-control" required="required">
+                                <input type="number" name="brand-priceperpiece" placeholder="Php" class="form-control" required="required" min="1">
                             </div>
                             <div class="no-padding-right col-lg-4">
                                 <label for="price-piece">Price (Box):</label>
-                                <input type="number" name="brand-priceperbox" placeholder="Php" class="form-control" required="required">
+                                <input type="number" name="brand-priceperbox" placeholder="Php" class="form-control" required="required" min="1">
                             </div>
                             <div class="no-padding-right col-lg-4">
                                 <label for="expire-date">Expiration Date:</label>
@@ -174,17 +180,23 @@
                             </div>
                         </div>
                         <div class="mb10 clearfix">
-                            <div class="no-padding-left col-lg-4">
+                            <div class="no-padding-left col-lg-3">
                                 <label for="holding-cost">Holding Cost:</label>
-                                <input type="number" name="brand-holdingcost" placeholder="Php" class="form-control" required="required">
+                                <input type="number" name="brand-holdingcost" placeholder="Php" class="form-control" required="required" min="1">
                             </div>
-                            <div class="no-padding-right col-lg-4">
+                            <div class="no-padding-right col-lg-3">
                                 <label for="ordering-cost">Ordering Cost:</label>
-                                <input type="number" name="brand-orderingcost" placeholder="Php" class="form-control" required="required">
+                                <input type="number" name="brand-orderingcost" placeholder="Php" class="form-control" required="required" min="1">
                             </div>
-                            <div class="no-padding-right col-lg-4">
+                            <div class="no-padding-right col-lg-3">
                                 <label for="total-quantity">Total Quantity (Box):</label>
-                                <input type="number" name="brand-totalqtyperbox" placeholder="Total" class="form-control" required="required">
+                                <input type="number" name="brand-totalqtyperbox" placeholder="Total" class="form-control" required="required" min="1">
+                            </div>
+                            <div class="no-padding-right col-lg-3">
+                                <label for="supplier">Supplier:</label>
+                                <select class="form-control" name="brand-supplier-account" required="required">
+                                    <?php require('../controls/suppliers-contact.php'); ?>
+                                </select>
                             </div>
                         </div>
                         <div class="mb10">
@@ -412,7 +424,7 @@
             </div>
             <div class="inventory hidden">
                 <p class="filter-inventory clearfix mb10">
-                    <a href="#brands" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-barcode"></span> &nbsp;Brands Inventory</a>
+                    <a href="#generic" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-barcode"></span> &nbsp;Generic Inventory</a>
                 </p>
                 <table class="table table-responsive table-hovered">
                     <thead>

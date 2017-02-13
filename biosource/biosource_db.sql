@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2017 at 09:00 AM
+-- Generation Time: Feb 13, 2017 at 09:30 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -39,15 +39,16 @@ CREATE TABLE `tbl_brand` (
   `brand_expiration` date NOT NULL,
   `brand_holdingcost` int(11) NOT NULL,
   `brand_orderingcost` int(11) NOT NULL,
-  `brand_totalqtyperbox` int(11) NOT NULL
+  `brand_totalqtyperbox` int(11) NOT NULL,
+  `brand_supplier` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_brand`
 --
 
-INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`) VALUES
-(1, 'Medicol', 1, 1, 1, 10, 10, 10, 10, '2017-01-24', 2000, 20000, 2000);
+INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`) VALUES
+(1, 'Biogesic', 1, 1, 1, 100, 1000, 2, 40, '2017-02-13', 10000, 10000, 10000, 'mercury@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -67,7 +68,7 @@ CREATE TABLE `tbl_category` (
 --
 
 INSERT INTO `tbl_category` (`category_id`, `category_code`, `category_name`, `slog`) VALUES
-(1, 1, 'test', 'test');
+(1, 1, 'Anti-Biotic', 'anti-biotic');
 
 -- --------------------------------------------------------
 
@@ -85,13 +86,6 @@ CREATE TABLE `tbl_checkout` (
   `item_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_checkout`
---
-
-INSERT INTO `tbl_checkout` (`checkout_id`, `checkout_qtypiece`, `checkout_qtybox`, `checkout_date`, `checkout_price`, `checkout_type`, `item_id`, `user_id`) VALUES
-(1, 0, 2, '2017-01-24 22:06:51', 20, 'tbl_product', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -111,7 +105,8 @@ CREATE TABLE `tbl_dosage` (
 --
 
 INSERT INTO `tbl_dosage` (`dosage_id`, `dosage_code`, `dosage_name`, `slog`) VALUES
-(1, 1, '2mg', '2mg');
+(1, 1, '500mg', '500mg'),
+(2, 1, '200mg', '200mg');
 
 -- --------------------------------------------------------
 
@@ -131,7 +126,8 @@ CREATE TABLE `tbl_generic` (
 --
 
 INSERT INTO `tbl_generic` (`generic_id`, `generic_code`, `generic_name`, `slog`) VALUES
-(1, 1, 'Biogesic', 'biogesic');
+(1, 1, 'Amoxicillin', 'amoxicillin'),
+(2, 1, 'Paracetamol', 'paracetamol');
 
 -- --------------------------------------------------------
 
@@ -152,15 +148,16 @@ CREATE TABLE `tbl_product` (
   `product_expiration` date NOT NULL,
   `product_holdingcost` int(11) NOT NULL,
   `product_orderingcost` int(11) NOT NULL,
-  `product_totalqtyperbox` int(11) NOT NULL
+  `product_totalqtyperbox` int(11) NOT NULL,
+  `product_supplier` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`) VALUES
-(1, 'Solmux', 1, 1, 1, 98, 10, 10, 10, '2017-01-24', 100000, 100000, 100000);
+INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`, `product_supplier`) VALUES
+(1, 'Pharex B', 1, 1, 1, 100, 1000, 27, 500, '2020-03-31', 20000, 20000, 20, '');
 
 -- --------------------------------------------------------
 
@@ -180,9 +177,7 @@ CREATE TABLE `tbl_status` (
 --
 
 INSERT INTO `tbl_status` (`status_id`, `status_remarks`, `user_id`, `status_contact`) VALUES
-(1, 1, 1, '213444888'),
-(2, 1, 4, '2134448555'),
-(3, 1, 2, '213123135');
+(1, 1, 1, '123456789');
 
 -- --------------------------------------------------------
 
@@ -204,7 +199,7 @@ CREATE TABLE `tbl_supplier` (
 --
 
 INSERT INTO `tbl_supplier` (`supplier_id`, `supplier_name`, `supplier_contact`, `supplier_address`, `supplier_status`, `supplier_date`) VALUES
-(1, 'nike', 'nike@gmail.com', 'california usa', 1, '2017-01-24 20:58:31');
+(1, 'mercury drug store', 'mercury@gmail.com', '1045 m. naval st, city of navotas, 1485 metro manila', 1, '2017-02-13 16:02:31');
 
 -- --------------------------------------------------------
 
@@ -261,10 +256,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_mname`, `user_lname`, `user_address`, `user_username`, `user_password`, `type_id`) VALUES
-(1, 'Admin', 'A.', 'Admin', 'Admin address', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1),
-(2, 'User', 'U.', 'User', 'User Address', 'user', '12dea96fec20593566ab75692c9949596833adc9', 2),
-(3, 'Cashier', 'C.', 'Cashier', '123 sample address Manila, The Philippines', 'cashier', 'a5b42198e3fb950b5ab0d0067cbe077a41da1245', 1),
-(4, 'John Cor', 'M.', 'Baylen', 'Malabon CIty', 'jc', 'f9ae8604de015e6fc12a1ebdbe72f262b981a2f6', 1);
+(1, 'Gelo', '', 'lopez', 'Malabon City', 'gelo', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620', 1);
 
 --
 -- Indexes for dumped tables
@@ -334,7 +326,8 @@ ALTER TABLE `tbl_type`
 -- Indexes for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `user_username` (`user_username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -354,17 +347,17 @@ ALTER TABLE `tbl_category`
 -- AUTO_INCREMENT for table `tbl_checkout`
 --
 ALTER TABLE `tbl_checkout`
-  MODIFY `checkout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `checkout_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_dosage`
 --
 ALTER TABLE `tbl_dosage`
-  MODIFY `dosage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `dosage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_generic`
 --
 ALTER TABLE `tbl_generic`
-  MODIFY `generic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `generic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_product`
 --
@@ -374,7 +367,7 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT for table `tbl_status`
 --
 ALTER TABLE `tbl_status`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_supplier`
 --
@@ -394,7 +387,7 @@ ALTER TABLE `tbl_type`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

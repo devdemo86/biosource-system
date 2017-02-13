@@ -1,8 +1,10 @@
         <?php if(isset($_SESSION['type_id'])): ?>
         <footer class="site-footer">
-            <p class="text-center">
-                <span>Copyright &copy; BIOSOURCE Drug Store - 2016. All rights reserved.</span>
-            </p>
+            <div class="container">
+                <p class="text-center">
+                    <span>Copyright &copy; BIOSOURCE Drug Store - 2016. All rights reserved.</span>
+                </p>
+            </div>
         </footer>
         <div class="sign-out-modal modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">

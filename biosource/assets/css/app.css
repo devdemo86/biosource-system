@@ -1,5 +1,7 @@
 /* General CSS */
 body {
+    background: url(../images/background.jpg) no-repeat;
+    background-size: cover;
     font-family: "Source Sans Pro", sans-serif;
     font-size: 14px;
 }
@@ -28,9 +30,8 @@ a:hover {
     text-decoration: none;
 }
 
-.body-login {
-    background: url(../images/background.jpg) no-repeat;
-    background-size: cover;
+.site-content.container {
+    background: #fff;
 }
 
 .modal-danger {
@@ -294,10 +295,14 @@ a:hover {
 .site-footer {
     width: 100%;
     height: auto;
-    padding: 10px 0;
+}
+
+.site-footer .container {
+    background: #fff;
 }
 
 .site-footer p {
+    padding: 10px 0;
     margin-bottom: 0;
     font-size: 92%;
     letter-spacing: .5px;

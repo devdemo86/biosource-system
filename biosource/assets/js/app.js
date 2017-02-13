@@ -627,11 +627,11 @@ $(function() {
         });
     });
 
-    $('body').delegate('a[href^="#brands"], a[href^="#products"]', 'click', function(e) {
+    $('body').delegate('a[href^="#generic"], a[href^="#branded"]', 'click', function(e) {
         e.preventDefault();
         var getHref = $(this).attr('href').replace('#', ''),
-            newHref = getHref === 'brands' ? 'products' : 'brands',
-            newUrl = getHref === 'brands' ? '../controls/brands.php' : '../controls/products.php',
+            newHref = getHref === 'generic' ? 'branded' : 'generic',
+            newUrl = getHref === 'generic' ? '../controls/brands.php' : '../controls/products.php',
             title = newHref.replace(newHref[0], newHref[0].toUpperCase());
         $(this).html('<span class="glyphicon glyphicon-barcode"></span> &nbsp;'+ title +' Inventory');
         $(this).attr('href', '#'+ newHref);

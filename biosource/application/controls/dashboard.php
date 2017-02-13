@@ -69,7 +69,7 @@
                     $content .= $brnd;
 
                     $content .= '</h1>';
-                    $content .= '<h4 class="text-center list-group-item-heading">All Registered Brand';
+                    $content .= '<h4 class="text-center list-group-item-heading">All Registered Generic';
 
                     $content .= $brnd > 1 ? 's' : '';
 
@@ -92,7 +92,7 @@
                     $content .= $prod;
 
                     $content .= '</h1>';
-                    $content .= '<h4 class="text-center list-group-item-heading">All Registered Product';
+                    $content .= '<h4 class="text-center list-group-item-heading">All Registered Branded';
 
                     $content .= $prod > 1 ? 's' : '';
 

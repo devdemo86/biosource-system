@@ -26,7 +26,7 @@
                     $content .= '<td class="text-center">'.$prodrow['product_qtyperbox'].'</td>';
                     $content .= '<td>';
                         $content .= '<button type="button" data-id="'.$prodrow['product_id'].'" class="btn btn-block btn-primary btn-purchase">';
-                        $content .= '<span class="glyphicon glyphicon-shopping-cart"></span> &nbsp;Purchase</button>';
+                        $content .= '<span class="glyphicon glyphicon-shopping-cart"></span> &nbsp;Add to Cart</button>';
                     $content .= '</td>';
                 $content .= '</tr>';
 

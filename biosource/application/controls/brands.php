@@ -9,7 +9,7 @@
         require_once('../controls/connection.php');
 
         $brand = "SELECT * FROM tbl_brand b INNER JOIN tbl_generic g ON b.generic_code = g.generic_code INNER JOIN tbl_category c ON ";
-        $brand .= "b.category_code = c.category_code INNER JOIN tbl_dosage d ON b.dosage_code = d.dosage_code ORDER BY b.brand_name ASC";
+        $brand .= "b.category_code = c.category_code INNER JOIN tbl_dosage d ON b.dosage_code = d.dosage_code GROUP BY b.brand_id ORDER BY b.brand_name ASC";
 
         $sqlbrand = mysqli_query($connection, $brand);
 

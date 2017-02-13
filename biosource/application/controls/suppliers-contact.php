@@ -10,9 +10,19 @@
 
         $sqlcon = mysqli_query($connection, $contact);
 
-        while($con = mysqli_fetch_assoc($sqlcon)) {
+        if($sqlcon->num_rows > 0) {
 
-            echo '<option value="'.$con['supplier_contact'].'">'.$con['supplier_contact'].'</option>';
+            echo '<option value="">Select Supplier</option>';
+
+            while($con = mysqli_fetch_assoc($sqlcon)) {
+
+                echo '<option value="'.$con['supplier_contact'].'">'.$con['supplier_contact'].'</option>';
+
+            }
+
+        } else {
+
+            echo '<option value="">No available</option>';
 
         }
 
