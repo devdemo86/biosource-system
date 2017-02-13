@@ -6,8 +6,8 @@
 
         require_once('../controls/connection.php');
 
-        $querybrnd = "SELECT * FROM tbl_brand p INNER JOIN tbl_generic g ON p.generic_code = g.generic_code INNER JOIN tbl_dosage d ";
-        $querybrnd .= "ON p.dosage_code = d.dosage_code ORDER BY p.brand_name ASC";
+        $querybrnd = "SELECT * FROM tbl_brand b INNER JOIN tbl_category c ON c.category_id = b.category_code INNER JOIN tbl_generic g ON b.generic_code = g.generic_code INNER JOIN tbl_dosage d ";
+        $querybrnd .= "ON b.dosage_code = d.dosage_code GROUP BY b.brand_id ORDER BY b.brand_name ASC";
 
         $sqlbrnd = mysqli_query($connection, $querybrnd);
 
@@ -17,6 +17,7 @@
 
                 $content = '<tr data-id="brand">';
                     $content .= '<td class="purchase-name">'.$brndrow['brand_name'].'</td>';
+                    $content .= '<td>'.$brndrow['category_name'].'</td>';
                     $content .= '<td>'.$brndrow['generic_name'].'</td>';
                     $content .= '<td class="text-center">'.$brndrow['dosage_name'].'</td>';
                     $content .= '<td class="text-center">'.date('F d, Y', strtotime($brndrow['brand_expiration'])).'</td>';

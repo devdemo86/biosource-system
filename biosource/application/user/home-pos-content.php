@@ -4,8 +4,8 @@
     <p class="text-right time"></p>
     <span class="help-block"></span>
     <ul class="nav nav-tabs nav-justified user-tabs mb10">
-        <li class="active"><a href="#"><i class="glyphicon glyphicon-barcode"></i> &nbsp;Products</a></li>
-        <li><a href="#"><i class="glyphicon glyphicon-barcode"></i> &nbsp;Brands</a></li>
+        <li class="active"><a href="#"><i class="glyphicon glyphicon-barcode"></i> &nbsp;Branded</a></li>
+        <li><a href="#"><i class="glyphicon glyphicon-barcode"></i> &nbsp;Generic</a></li>
         <li><a href="#"><i class="glyphicon glyphicon-list"></i> &nbsp;Checkout</a></li>
     </ul>
     <span class="help-block"></span>
@@ -14,7 +14,7 @@
             <h3 class="panel-title admin-title user-title">Dashboard</h3>
         </div>
         <div class="panel-body">
-            <div class="products table-responsive">
+            <div class="branded table-responsive">
                 <form class="search-form clearfix" data-code="product">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-3"></div>
@@ -32,7 +32,8 @@
                 <table class="table mb0">
                     <thead>
                         <tr>
-                            <th>Product Name</th>
+                            <th>Branded Name</th>
+                            <th>Category Name</th>
                             <th>Generic Name</th>
                             <th class="text-center">Dosage</th>
                             <th class="text-center">Expiration Date</th>
@@ -48,7 +49,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="brands table-responsives hidden">
+            <div class="generic table-responsives hidden">
                 <form class="search-form clearfix" data-code="brand">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-3"></div>
@@ -66,7 +67,8 @@
                 <table class="table mb0">
                     <thead>
                         <tr>
-                            <th>Brands Name</th>
+                            <th>Product Name</th>
+                            <th>Category Name</th>
                             <th>Generic Name</th>
                             <th class="text-center">Dosage</th>
                             <th class="text-center">Expiration Date</th>

@@ -6,8 +6,8 @@
 
         require_once('../controls/connection.php');
 
-        $queryprod = "SELECT * FROM tbl_product p INNER JOIN tbl_generic g ON p.generic_code = g.generic_code INNER JOIN tbl_dosage d ";
-        $queryprod .= "ON p.dosage_code = d.dosage_code ORDER BY p.product_name ASC";
+        $queryprod = "SELECT * FROM tbl_product p INNER JOIN tbl_category c ON c.category_id = p.category_code INNER JOIN tbl_generic g ON p.generic_code = g.generic_code INNER JOIN tbl_dosage d ";
+        $queryprod .= "ON p.dosage_code = d.dosage_code GROUP BY p.product_id ORDER BY p.product_name ASC";
 
         $sqlprod = mysqli_query($connection, $queryprod);
 
@@ -17,6 +17,7 @@
 
                 $content = '<tr data-id="product">';
                     $content .= '<td class="purchase-name">'.$prodrow['product_name'].'</td>';
+                    $content .= '<td>'.$prodrow['category_name'].'</td>';
                     $content .= '<td>'.$prodrow['generic_name'].'</td>';
                     $content .= '<td class="text-center">'.$prodrow['dosage_name'].'</td>';
                     $content .= '<td class="text-center">'.date('F d, Y', strtotime($prodrow['product_expiration'])).'</td>';

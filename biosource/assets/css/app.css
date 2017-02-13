@@ -1,9 +1,12 @@
 /* General CSS */
 body {
-    background: url(../images/background.jpg) no-repeat;
-    background-size: cover;
     font-family: "Source Sans Pro", sans-serif;
     font-size: 14px;
+}
+
+body.body-login {
+    background: url(../images/background.jpg) no-repeat;
+    background-size: cover;
 }
 
 select {
