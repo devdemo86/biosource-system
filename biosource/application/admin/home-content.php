@@ -258,8 +258,18 @@
                             <input type="text" name="user-username" class="form-control" placeholder="It will be the credential for username" required="required">
                         </div>
                         <div class="mb10">
-                            <label for="password">Password:</label>
-                            <input type="password" name="user-password" class="form-control" placeholder="It will be the credential for password" required="required">
+                            <div class="clearfix">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="password">Password:</label>
+                                        <input type="password" name="user-password" class="form-control" placeholder="It will be the credential for password" required="required">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label for="password">Confirm Password:</label>
+                                        <input type="password" class="form-control confirm-password-add" placeholder="Confirm password is to verify your password" required="required">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="mb10">
                             <div class="alert alert-success process-alert-success hidden mb0" role="alert">
@@ -270,6 +280,11 @@
                             </div>
                             <div class="alert alert-warning process-alert-exist hidden mb0" role="alert">
                                 <strong>Attention!</strong> This user is already exist.
+                            </div>
+                        </div>
+                        <div class="mb10">
+                            <div class="alert alert-danger password-alert-error hidden mb0" role="alert">
+                                <strong>Oooops!</strong> <span class="password-error-text"></span>
                             </div>
                         </div>
                         <div class="clearfix">

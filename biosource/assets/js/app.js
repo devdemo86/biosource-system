@@ -59,6 +59,71 @@ $(function() {
         }
     });
 
+    $('a[href^="#forgot-password"]').click(function(e) {
+        e.preventDefault();
+        $('.forgot-password-modal').modal();
+    });
+
+    $('.alert-login').css('margin-top', '0').hide();
+    $('.error-message').text('');
+    $('.forgot-password-form').submit(function(e) {
+        e.preventDefault();
+        var passwordData = $(this).serializeArray(),
+            userName = passwordData[0].value,
+            newPassword = passwordData[1].value,
+            confirmPassword = passwordData[2].value,
+            checkLength = newPassword.length;
+        if($.trim(newPassword) != '' && $.trim(confirmPassword) != '' && $.trim(userName) != '') {
+            if(checkLength >= 8) {
+                if(newPassword == confirmPassword) {
+                    $.ajax({
+                        url: '../application/controls/forgot-password.php',
+                        type: 'POST',
+                        data: {
+                            accountModify: [
+                                userName,
+                                newPassword
+                            ]
+                        },
+                        success: function(response) {
+                            if(response != 'zero') {
+                                var getClass = $('.alert-login').attr('class');
+                                $('.error-message').text('Your password update successful. It reload after 3 seconds to secure your account.');
+                                $('.alert-login').attr('class', getClass.replace('danger', 'success')).css('margin-top', '15px').show();;
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000);
+                            } else {
+                                $('.error-message').text('Your username is not valid');
+                                $('.alert-login').css('margin-top', '15px').show();
+                            }
+                        }
+                    });
+                } else {
+                    $('.error-message').text('Password and Confirm Password mismatched!');
+                    $('.alert-login').css('margin-top', '15px').show();
+                }
+            } else {
+                $('.error-message').text('Password atleast 8 characters.');
+                $('.alert-login').css('margin-top', '15px').show();
+            }
+        } else {
+            var message ;
+            if($.trim(userName) == '') {
+                message = 'Username should not be empty!';
+            } else {
+                message = $.trim(newPassword) == '' ? 'Password should not be empty.' : 'Confirm Password should not be empty.';
+            }
+            $('.alert-login').css('margin-top', '15px').show();
+            $('.error-message').text(message);
+        }
+    });
+
+    $('.forgot-password-form input').keyup(function() {
+        $('.alert-login').css('margin-top', '0').hide();
+        $('.error-message').text('');
+    });
+
     $('a[href^="#settings"]').click(function(e) {
         e.preventDefault();
         if($('.dropdown-option').is(':visible')) {
@@ -181,29 +246,38 @@ $(function() {
     $('.form-add-user').submit(function(e) {
         e.preventDefault();
         var getUser = $(this).serializeArray();
-        $('.user-button-add').text('Saving...').css('opacity', '.8').attr('disabled', 'disabled');
-        $.ajax({
-            url: '../controls/accounts-add.php',
-            type: 'POST',
-            data: {user: getUser},
-            success: function(result) {
-                alert(result);
-                $('.user-button-add').text('Submit').css('opacity', 1).removeAttr('disabled');
-                if(result === 'success') {
-                    $('.process-block, .process-alert-success').removeClass('hidden');
-                    $('.process-alert-error, .process-alert-exist').addClass('hidden');
-                } else if(result == 'exist') {
-                    $('.process-block, .process-alert-exist').removeClass('hidden');
-                    $('.process-alert-error, .process-alert-success').addClass('hidden');
-                } else {
-                    $('.process-block, .process-alert-error').removeClass('hidden');
-                    $('.process-alert-success, .process-alert-exist').addClass('hidden');
-                }
-            },
-            error: function() {
-                $(location).attr('href', '../errors/dberror');
+        if(getUser[getUser.length - 1].value.length >= 8) {
+            if(getUser[getUser.length - 1].value == $('.confirm-password-add').val()) {
+                $('.user-button-add').text('Saving...').css('opacity', '.8').attr('disabled', 'disabled');
+                $.ajax({
+                    url: '../controls/accounts-add.php',
+                    type: 'POST',
+                    data: {user: getUser},
+                    success: function(result) {
+                        $('.user-button-add').text('Submit').css('opacity', 1).removeAttr('disabled');
+                        if(result === 'success') {
+                            $('.process-block, .process-alert-success').removeClass('hidden');
+                            $('.process-alert-error, .process-alert-exist, .password-alert-error').addClass('hidden');
+                        } else if(result == 'exist') {
+                            $('.process-block, .process-alert-exist').removeClass('hidden');
+                            $('.process-alert-error, .process-alert-success').addClass('hidden');
+                        } else {
+                            $('.process-block, .process-alert-error').removeClass('hidden');
+                            $('.process-alert-success, .process-alert-exist').addClass('hidden');
+                        }
+                    },
+                    error: function() {
+                        $(location).attr('href', '../errors/dberror');
+                    }
+                });
+            } else {
+                $('.password-error-text').text('Confirm password and password should match!');
+                $('.password-alert-error').removeClass('hidden');
             }
-        });
+        } else {
+            $('.password-error-text').text('Password should be atleast 8 characters.');
+            $('.password-alert-error').removeClass('hidden');
+        }
     });
 
     $('.form-add-brand').submit(function(e) {

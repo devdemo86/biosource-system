@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2017 at 03:12 PM
+-- Generation Time: Jan 25, 2017 at 09:00 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -364,7 +364,7 @@ ALTER TABLE `tbl_dosage`
 -- AUTO_INCREMENT for table `tbl_generic`
 --
 ALTER TABLE `tbl_generic`
-  MODIFY `generic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `generic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_product`
 --

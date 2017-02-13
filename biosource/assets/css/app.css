@@ -29,7 +29,8 @@ a:hover {
 }
 
 .body-login {
-    background: #efefef;
+    background: url(../images/background.jpg) no-repeat;
+    background-size: cover;
 }
 
 .modal-danger {
@@ -217,14 +218,27 @@ a:hover {
 }
 
 /* Login CSS */
+.system-title {
+    font-size: 400%;
+    color: #fff;
+    padding: 25px 0;
+    background: rgba(51, 122, 183, 0.2);
+    font-weight: bold;
+    text-align: center;
+    max-width: 550px;
+    margin: 3em auto;
+    text-shadow: 2px 2px 5px #000;
+}
+
 .form-section {
-    max-width: 450px;
+    position: absolute;
+    right: 150px;
+    bottom: 100px;
+    max-width: 360px;
     width: 90%;
     height: auto;
-    margin: 4em auto;
     padding: 35px 35px;
-    border: 1px solid;
-    border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+    border: 1px solid rgba(162, 162, 162, 0.79);
     border-radius: 3px;
     background: #fff;
 }
@@ -241,6 +255,19 @@ a:hover {
 .noexist-alert,
 .success-alert {
     display: none;
+}
+
+.company-logo {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.company-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Admin CSS */
