@@ -45,18 +45,42 @@
 
                                 $boxprice = $resultselect[$type.'_priceperbox'] * $qty[1]['value'];
 
-                                $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtybox`, `checkout_price`, `user_id`, `item_id`, `checkout_type`) ";
-                                $queryinsert .= "VALUES(". $qty[1]['value'].", ".$boxprice.", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
+                                $select_query = "SELECT * FROM tbl_checkout WHERE item_id = $id AND checkout_type = 'tbl_".$type."'";
 
-                                $sqlinsert = mysqli_query($connection, $queryinsert);
+                                $select_query_rows = mysqli_query($connection, $select_query);
 
-                                if((int) $sqlinsert === 1) {
+                                if($select_query_rows && $select_query_rows->num_rows > 0) {
 
-                                    echo 'success';
+                                    $query_update = "UPDATE tbl_checkout SET checkout_qtybox = (checkout_qtybox + ".$qty[1]['value']."), checkout_price = (checkout_price + ".$boxprice.") WHERE item_id = $id AND checkout_type = 'tbl_".$type."'";
+
+                                    $query_update_check = mysqli_query($connection, $query_update);
+
+                                    if((int) $query_update_check === 1) {
+
+                                        echo 'success';
+
+                                    } else {
+
+                                        echo 'id-error';
+
+                                    }
 
                                 } else {
 
-                                    echo 'id-error';
+                                    $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtybox`, `checkout_price`, `user_id`, `item_id`, `checkout_type`) ";
+                                    $queryinsert .= "VALUES(".$qty[1]['value'].", ".$boxprice.", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
+
+                                    $sqlinsert = mysqli_query($connection, $queryinsert);
+
+                                    if((int) $sqlinsert === 1) {
+
+                                        echo 'success';
+
+                                    } else {
+
+                                        echo 'id-error';
+
+                                    }
 
                                 }
 
@@ -90,18 +114,42 @@
 
                                 $pieceprice = $resultselect[$type.'_priceperpiece'] * $qty[0]['value'];
 
-                                $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtypiece`, `checkout_price`, `user_id`, `item_id`, `checkout_type`) ";
-                                $queryinsert .= "VALUES(". $qty[0]['value'].", ".$pieceprice.", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
+                                $select_query = "SELECT * FROM tbl_checkout WHERE item_id = $id AND checkout_type = 'tbl_".$type."'";
 
-                                $sqlinsert = mysqli_query($connection, $queryinsert);
+                                $select_query_rows = mysqli_query($connection, $select_query);
 
-                                if((int) $sqlinsert === 1) {
+                                if($select_query_rows && $select_query_rows->num_rows > 0) {
 
-                                    echo 'success';
+                                    $query_update = "UPDATE tbl_checkout SET checkout_qtypiece = (checkout_qtypiece + ".$qty[0]['value']."), checkout_price = (checkout_price + ".$pieceprice.") WHERE item_id = $id AND checkout_type = 'tbl_".$type."'";
+
+                                    $query_update_check = mysqli_query($connection, $query_update);
+
+                                    if((int) $query_update_check === 1) {
+
+                                        echo 'success';
+
+                                    } else {
+
+                                        echo 'id-error';
+
+                                    }
 
                                 } else {
 
-                                    echo 'id-error';
+                                    $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtypiece`, `checkout_price`, `user_id`, `item_id`, `checkout_type`) ";
+                                    $queryinsert .= "VALUES(". $qty[0]['value'].", ".$pieceprice.", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
+
+                                    $sqlinsert = mysqli_query($connection, $queryinsert);
+
+                                    if((int) $sqlinsert === 1) {
+
+                                        echo 'success';
+
+                                    } else {
+
+                                        echo 'id-error';
+
+                                    }
 
                                 }
 

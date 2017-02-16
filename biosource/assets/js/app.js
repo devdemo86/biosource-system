@@ -774,7 +774,7 @@ $(function() {
             url: '../controls/pos-checkout-delete.php',
             type: 'POST',
             data: {delid: getId},
-            success: function() {
+            success: function(result) {
                 $('.user-alert-delete-success, .delete-block').removeClass('hidden');
             },
             error: function() {
