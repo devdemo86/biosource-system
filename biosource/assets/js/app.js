@@ -844,13 +844,21 @@ $(function() {
         var getCashierInput = $(this).serializeArray()[0].value,
             getCheck = parseInt(getCashierInput) - parseInt(getTotalPrice);
         if(parseInt(getCashierInput) > parseInt(getTotalPrice)) {
-            $('.payment-modal').modal('hide');
             $.ajax({
                 url: '../controls/pos-transaction.php',
                 type: 'POST',
                 data: {proceed: true, citizen: getCitizenId, total: getTotalPrice, cashier: getCashier},
                 success: function(result) {
-                    window.print();
+                    $('.payment-modal').modal('hide');
+                    $('.change-price').text(getCheck);
+                    $('.change-currency-modal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    setTimeout(function() {
+                        $('.change-currency-modal').modal('hide');
+                        window.print();
+                    }, 2000);
                 },
                 error: function() {
                     $(location).attr('href', '../errors/dberror');
