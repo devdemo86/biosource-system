@@ -784,6 +784,7 @@ $(function() {
     });
 
     $('.cancel-trans').click(function() {
+        $(this).text('Processing...')
         $.ajax({
             url: '../controls/pos-checkout-cancel.php',
             type: 'POST',

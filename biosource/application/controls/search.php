@@ -36,7 +36,7 @@
                         $content .= '<td class="text-center">'.$item[$type.'_priceperbox'].'</td>';
                         $content .= '<td>';
                             $content .= '<button type="button" data-id="'.$item[$type.'_id'].'" class="btn btn-block btn-primary btn-purchase">';
-                            $content .= '<span class="glyphicon glyphicon-shopping-cart"></span> &nbsp;Purchase</button>';
+                            $content .= '<span class="glyphicon glyphicon-shopping-cart"></span> &nbsp;Add to Cart</button>';
                         $content .= '</td>';
                     $content .= '</tr>';
 
