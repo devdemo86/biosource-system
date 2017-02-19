@@ -18,11 +18,51 @@
 
         if($result['checkout_type'] == 'tbl_product') {
 
-            $update = "UPDATE tbl_product SET product_qtyperpiece = (product_qtyperpiece + ".$result['checkout_qtypiece']."), product_qtyperbox = (product_qtyperbox + ".$result['checkout_qtybox'].") WHERE product_id = ".$result['item_id'];
+            $appendquery = '';
+
+            if(count($_POST['howMany']) == 1) {
+
+                if($_POST['howMany'][0]['name'] == 'delete-how-many-piece') {
+
+                    $appendquery = "product_qtyperpiece = (product_qtyperpiece + ".$_POST['howMany'][0]['value'].")";
+
+                } else {
+
+                    $appendquery = "product_qtyperbox = (product_qtyperbox + ".$_POST['howMany'][1]['value'].")";
+
+                }
+
+            } else {
+
+                $appendquery = "product_qtyperpiece = (product_qtyperpiece + ".$_POST['howMany'][0]['value']."), product_qtyperbox = (product_qtyperbox + ".$_POST['howMany'][1]['value'].")";
+
+            }
+
+            $update = "UPDATE tbl_product SET ".$appendquery." WHERE product_id = ".$result['item_id'];
 
         } else {
 
-            $update = "UPDATE tbl_brand SET brand_qtyperpiece = (brand_qtyperpiece + ".$result['checkout_qtypiece']."), brand_qtyperbox = (brand_qtyperbox + ".$result['checkout_qtybox'].") WHERE brand_id = ".$result['item_id'];
+            $appendquery = '';
+
+            if(count($_POST['howMany']) == 1) {
+
+                if($_POST['howMany'][0]['name'] == 'delete-how-many-piece') {
+
+                    $appendquery = "brand_qtyperpiece = (brand_qtyperpiece + ".$_POST['howMany'][0]['value'].")";
+
+                } else {
+
+                    $appendquery = "brand_qtyperbox = (brand_qtyperbox + ".$_POST['howMany'][1]['value'].")";
+
+                }
+
+            } else {
+
+                $appendquery = "brand_qtyperpiece = (brand_qtyperpiece + ".$_POST['howMany'][0]['value']."), brand_qtyperbox = (brand_qtyperbox + ".$_POST['howMany'][1]['value'].")";
+
+            }
+
+            $update = "UPDATE tbl_brand SET ".$appendquery." WHERE brand_id = ".$result['item_id'];
 
         }
 
@@ -30,7 +70,41 @@
 
         if($result_update) {
 
-            $query = "DELETE FROM tbl_checkout WHERE checkout_id = ".$_POST['delid'];
+            $query = '';
+
+            $checkitempiece = 0;
+
+            $checkitembox = 0;
+
+            if(count($_POST['howMany']) != 1) {
+
+                $checkitempiece = $result['checkout_qtypiece'] - $_POST['howMany'][0]['value'];
+
+                $checkitembox = $result['checkout_qtybox'] - $_POST['howMany'][1]['value'];
+
+            } else {
+
+                if($_POST['howMany'][0]['name'] == 'delete-how-many-piece') {
+
+                    $checkitempiece = $result['checkout_qtypiece'] - $_POST['howMany'][0]['value'];
+
+                } else {
+
+                    $checkitembox = $result['checkout_qtybox'] - $_POST['howMany'][1]['value'];
+
+                }
+
+            }
+
+            if($checkitempiece == 0 && $checkitembox == 0) {
+
+                $query = "DELETE FROM tbl_checkout WHERE checkout_id = ".$_POST['delid'];
+
+            } else {
+
+                $query = "UPDATE tbl_checkout SET checkout_qtypiece = ".$checkitempiece.", checkout_qtybox = ".$checkitembox." WHERE checkout_id = ".$_POST['delid'];
+
+            }
 
             $sql = mysqli_query($connection, $query);
 

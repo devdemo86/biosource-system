@@ -769,18 +769,71 @@ $(function() {
 
     $('.user-alert-delete-success, .delete-block, .user-alert-finish-trans').addClass('hidden');
     $('body').delegate('.checkout-delete', 'click', function() {
-        var getId = $(this).attr('data-id');
-        $.ajax({
-            url: '../controls/pos-checkout-delete.php',
-            type: 'POST',
-            data: {delid: getId},
-            success: function(result) {
-                $('.user-alert-delete-success, .delete-block').removeClass('hidden');
-            },
-            error: function() {
-                $(location).attr('href', '../errors/dberror');
+        var getId = $(this).attr('data-id'),
+            piece = $(this).parents('tr').attr('data-piece'),
+            box = $(this).parents('tr').attr('data-box'),
+            editHTML = '';
+        $('.error-delete').remove();
+        $('.delete-checkout-confirm-cash').attr('delete-data-id', getId);
+        if(piece != 0) {
+            var classAppend = box > 0 ? ' class="form-group"' : '';
+            editHTML += '<div'+ classAppend +'>';
+                editHTML += '<label for="delete-how-many-piece">For Piece:</label>';
+                editHTML += '<input type="number" min="0" max="'+ piece +'" data-check="'+ piece +'" name="delete-how-many-piece" class="form-control" value="'+ piece +'" placeholder="How many pieces?">';
+            editHTML += '</div>';
+        }
+        if(box != 0) {
+            editHTML += '<div class="clearfix">';
+                editHTML += '<label for="delete-how-many-box">For Box:</label>';
+                editHTML += '<input type="number" min="0" max="'+ piece +'" data-check="'+ box +'" name="delete-how-many-box" class="form-control" value="'+ box +'" placeholder="How many boxes?">';
+            editHTML += '</div>';
+        }
+        $('.edit-delete-body').html(editHTML);
+        $('.editable-delete-modal').modal();
+    });
+
+    $('.delete-checkout-confirm-cash').submit(function(e) {
+        var getId = $(this).attr('delete-data-id'),
+            getHowMany = $(this).serializeArray(),
+            checkPiece = $(this).find('input').eq(0).attr('data-check'),
+            checkBox = $(this).find('input').eq(1).attr('data-check'),
+            proceed = false;
+        e.preventDefault();
+        $('.error-delete').remove();
+        if(getHowMany.length == 1 && 'delete-how-many-piece' == getHowMany[0].name) {
+            proceed = getHowMany[0].value > 0 && getHowMany[0].value != 0 && getHowMany[0].value <= checkPiece ? true : false;
+        } else {
+            if(getHowMany.length == 1 && 'delete-how-many-box' == getHowMany[1].name) {
+                proceed = getHowMany[1].value > 0 && getHowMany[1].value != 0 && getHowMany[1].value <= checkBox ? true : false;
+            } else {
+                if((getHowMany[1].value >= 0 && getHowMany[1].value <= checkBox) && (getHowMany[0].value >= 0 && getHowMany[0].value <= checkPiece)) {
+                    proceed = true;
+                } else {
+                    proceed = false;
+                }
             }
-        });
+        }
+        if(proceed) {
+            $.ajax({
+                url: '../controls/pos-checkout-delete.php',
+                type: 'POST',
+                data: {delid: getId, howMany: getHowMany},
+                success: function(result) {
+                    $('.editable-delete-modal').modal('hide');
+                    $('.user-alert-delete-success, .delete-block').removeClass('hidden');
+                },
+                error: function() {
+                    $(location).attr('href', '../errors/dberror');
+                }
+            });
+        } else {
+            var getEq = getHowMany[0].value == 0 || getHowMany[0].value > checkPiece ? 'Piece' : 'Box',
+                htmlErrorContent = '<span class="error-delete help-block"></span>';
+                htmlErrorContent += '<div class="alert alert-danger error-delete text-center" style="margin-bottom:0;">';
+                htmlErrorContent += getEq +' Should not exceed the limit or equivalent to zero.';
+                htmlErrorContent += '</div>';
+            $('.edit-delete-body').append(htmlErrorContent);
+        }
     });
 
     $('.cancel-trans').click(function() {

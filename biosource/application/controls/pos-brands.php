@@ -7,7 +7,7 @@
         require_once('../controls/connection.php');
 
         $querybrnd = "SELECT * FROM tbl_brand b INNER JOIN tbl_category c ON c.category_id = b.category_code INNER JOIN tbl_generic g ON b.generic_code = g.generic_code INNER JOIN tbl_dosage d ";
-        $querybrnd .= "ON b.dosage_code = d.dosage_code GROUP BY b.brand_id ORDER BY b.brand_name ASC";
+        $querybrnd .= "ON b.dosage_code = d.dosage_code WHERE b.brand_qtyperpiece != 0 OR b.brand_qtyperbox != 0 GROUP BY b.brand_id ORDER BY b.brand_name ASC";
 
         $sqlbrnd = mysqli_query($connection, $querybrnd);
 

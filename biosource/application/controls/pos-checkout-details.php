@@ -25,7 +25,7 @@
             while($row = mysqli_fetch_assoc($sql)) {
 
                 $content = '';
-                $content .= '<tr>';
+                $content .= '<tr data-piece="'.$row['checkout_qtypiece'].'" data-box="'.$row['checkout_qtybox'].'">';
                     $content .= '<td class="text-center">'.$row['checkout_id'].'</td>';
 
                         $tbl = $row['checkout_type'] === 'tbl_brand' ? 'brand_' : 'product_';
@@ -54,9 +54,11 @@
 
                         }
 
-                    $totalexpense += $row['checkout_price'];
+                    $totalprice = ($row['checkout_qtypiece'] * $item[$tbl.'priceperpiece']) + ($row['checkout_qtybox'] * $item[$tbl.'priceperbox']);
 
-                    $content .= '<td><strong>P</strong> '.number_format($row['checkout_price'], 2).'</td>';
+                    $totalexpense = $totalprice;
+
+                    $content .= '<td><strong>P</strong> '.number_format($totalprice, 2).'</td>';
                     $content .= '<td>'.date('M d, Y', strtotime($row['checkout_date'])).' <strong>at</strong> '.date('g:i:s A', strtotime($row['checkout_date'])).'</td>';
 
                     $queryitem = "SELECT user_fname FROM tbl_user WHERE user_id = ".$row['user_id'];

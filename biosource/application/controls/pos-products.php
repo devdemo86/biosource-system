@@ -7,7 +7,7 @@
         require_once('../controls/connection.php');
 
         $queryprod = "SELECT * FROM tbl_product p INNER JOIN tbl_category c ON c.category_id = p.category_code INNER JOIN tbl_generic g ON p.generic_code = g.generic_code INNER JOIN tbl_dosage d ";
-        $queryprod .= "ON p.dosage_code = d.dosage_code GROUP BY p.product_id ORDER BY p.product_name ASC";
+        $queryprod .= "ON p.dosage_code = d.dosage_code WHERE p.product_qtyperpiece != 0 OR p.product_qtyperbox != 0 GROUP BY p.product_id ORDER BY p.product_name ASC";
 
         $sqlprod = mysqli_query($connection, $queryprod);
 

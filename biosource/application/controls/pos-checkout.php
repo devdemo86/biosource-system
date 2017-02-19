@@ -51,7 +51,7 @@
 
                                 if($select_query_rows && $select_query_rows->num_rows > 0) {
 
-                                    $query_update = "UPDATE tbl_checkout SET checkout_qtybox = (checkout_qtybox + ".$qty[1]['value']."), checkout_price = (checkout_price + ".$boxprice.") WHERE item_id = $id AND checkout_type = 'tbl_".$type."'";
+                                    $query_update = "UPDATE tbl_checkout SET checkout_qtybox = (checkout_qtybox + ".$qty[1]['value'].") WHERE item_id = $id AND checkout_type = 'tbl_".$type."'";
 
                                     $query_update_check = mysqli_query($connection, $query_update);
 
@@ -67,8 +67,8 @@
 
                                 } else {
 
-                                    $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtybox`, `checkout_price`, `user_id`, `item_id`, `checkout_type`) ";
-                                    $queryinsert .= "VALUES(".$qty[1]['value'].", ".$boxprice.", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
+                                    $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtybox`, `user_id`, `item_id`, `checkout_type`) ";
+                                    $queryinsert .= "VALUES(".$qty[1]['value'].", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
 
                                     $sqlinsert = mysqli_query($connection, $queryinsert);
 
@@ -120,7 +120,7 @@
 
                                 if($select_query_rows && $select_query_rows->num_rows > 0) {
 
-                                    $query_update = "UPDATE tbl_checkout SET checkout_qtypiece = (checkout_qtypiece + ".$qty[0]['value']."), checkout_price = (checkout_price + ".$pieceprice.") WHERE item_id = $id AND checkout_type = 'tbl_".$type."'";
+                                    $query_update = "UPDATE tbl_checkout SET checkout_qtypiece = (checkout_qtypiece + ".$qty[0]['value'].") WHERE item_id = $id AND checkout_type = 'tbl_".$type."'";
 
                                     $query_update_check = mysqli_query($connection, $query_update);
 
@@ -136,8 +136,8 @@
 
                                 } else {
 
-                                    $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtypiece`, `checkout_price`, `user_id`, `item_id`, `checkout_type`) ";
-                                    $queryinsert .= "VALUES(". $qty[0]['value'].", ".$pieceprice.", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
+                                    $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtypiece`, `user_id`, `item_id`, `checkout_type`) ";
+                                    $queryinsert .= "VALUES(". $qty[0]['value'].", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
 
                                     $sqlinsert = mysqli_query($connection, $queryinsert);
 
@@ -188,8 +188,8 @@
 
                             $price = $pieceprice + $boxprice;
 
-                            $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtypiece`, `checkout_qtybox`, `checkout_price`, `user_id`, `item_id`, `checkout_type`) ";
-                            $queryinsert .= "VALUES(". $qty[0]['value'].", ".$qty[1]['value'].", ".$price.", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
+                            $queryinsert = "INSERT INTO tbl_checkout(`checkout_qtypiece`, `checkout_qtybox`, `user_id`, `item_id`, `checkout_type`) ";
+                            $queryinsert .= "VALUES(". $qty[0]['value'].", ".$qty[1]['value'].", ".$_SESSION['user_id'].", ".$id.", 'tbl_".$type."')";
 
                             $sqlinsert = mysqli_query($connection, $queryinsert);
 

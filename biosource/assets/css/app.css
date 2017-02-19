@@ -313,6 +313,12 @@ a:hover {
     letter-spacing: .5px;
 }
 
+.bg-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
 /* Print CSS */
 .print-css {
     display: none;
