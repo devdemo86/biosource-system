@@ -12,9 +12,7 @@
 
             $citizen = $_POST['citizen'];
 
-            $total = $_POST['total'];
-
-            $finalprice = $citizen == null ? number_format($total, 2) : number_format($total * 0.20 , 2);
+            $finalprice = $_POST['total'];
 
             $cashier = $_SESSION['user_id'];
 

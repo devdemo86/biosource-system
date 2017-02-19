@@ -873,10 +873,13 @@ $(function() {
                     getTotalTempBool = false;
                 }
                 getCitizenId = $('.citizen-id').val();
-                getTotal = $('.total-price').text().split('.')[0];
+                getTotal = $('.total-price').text().replace(',', '').split('.')[0];
                 getCashier = $('.cashier').text();
-                getFinalPrice = getCitizenId.trim() == "" ? getTotalTemp : getTotalTemp - (getTotal * 0.20);
-                getTotalPrice = getFinalPrice % 1 === 0 ? getFinalPrice : getFinalPrice.toFixed(2);
+                if(getTotalTemp.toString().match(',')) {
+                    getTotalTemp = parseInt(getTotalTemp.replace(',', '').split('.')[0]);
+                }
+                getFinalPrice = $.trim(getCitizenId) == "" ? getTotalTemp * 1.00 : getTotalTemp - (parseInt(getTotal) * 0.20);
+                getTotalPrice = Number(getFinalPrice.toFixed(1)).toLocaleString() +'.00';
                 $('.total-price').text(getTotalPrice);
                 $('.payment-check').val(getTotalPrice);
                 $('.payment-modal').modal();
@@ -895,15 +898,17 @@ $(function() {
     $('.payment-cash').submit(function(e) {
         e.preventDefault();
         var getCashierInput = $(this).serializeArray()[0].value,
-            getCheck = parseInt(getCashierInput) - parseInt(getTotalPrice);
-        if(parseInt(getCashierInput) > parseInt(getTotalPrice)) {
+            fromCashier = getCashierInput.replace(',', '').split('.')[0],
+            fromAmountDue = getTotalPrice.replace(',', '').split('.')[0];
+        if(parseInt(fromCashier) > parseInt(fromAmountDue)) {
+            var getCheck = (parseInt(fromCashier) - parseInt(fromAmountDue)) * 1.00;
             $.ajax({
                 url: '../controls/pos-transaction.php',
                 type: 'POST',
                 data: {proceed: true, citizen: getCitizenId, total: getTotalPrice, cashier: getCashier},
                 success: function(result) {
                     $('.payment-modal').modal('hide');
-                    $('.change-price').text(getCheck);
+                    $('.change-price').text(Number(getCheck.toFixed(1)).toLocaleString());
                     $('.change-currency-modal').modal({
                         backdrop: 'static',
                         keyboard: false

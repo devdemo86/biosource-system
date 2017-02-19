@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2017 at 05:35 PM
+-- Generation Time: Feb 13, 2017 at 09:30 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -48,7 +48,7 @@ CREATE TABLE `tbl_brand` (
 --
 
 INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`) VALUES
-(1, 'RiteMed', 1, 1, 1, 110, 1000, 5, 50, '2020-02-19', 10000, 10000, 100, 'mercury@gmail.com');
+(1, 'Biogesic', 1, 1, 1, 100, 1000, 2, 40, '2017-02-13', 10000, 10000, 10000, 'mercury@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -81,17 +81,11 @@ CREATE TABLE `tbl_checkout` (
   `checkout_qtypiece` int(11) NOT NULL,
   `checkout_qtybox` int(11) NOT NULL,
   `checkout_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `checkout_price` int(11) NOT NULL,
   `checkout_type` varchar(20) NOT NULL,
   `item_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tbl_checkout`
---
-
-INSERT INTO `tbl_checkout` (`checkout_id`, `checkout_qtypiece`, `checkout_qtybox`, `checkout_date`, `checkout_type`, `item_id`, `user_id`) VALUES
-(3, 20, 0, '2017-02-20 00:33:59', 'tbl_product', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -163,7 +157,7 @@ CREATE TABLE `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`, `product_supplier`) VALUES
-(1, 'Pharex B', 1, 1, 1, 100, 920, 27, 270, '2020-02-19', 5000, 5000, 10, 'mercury@gmail.com');
+(1, 'Pharex B', 1, 1, 1, 100, 1000, 27, 500, '2020-03-31', 20000, 20000, 20, '');
 
 -- --------------------------------------------------------
 
@@ -183,8 +177,7 @@ CREATE TABLE `tbl_status` (
 --
 
 INSERT INTO `tbl_status` (`status_id`, `status_remarks`, `user_id`, `status_contact`) VALUES
-(1, 1, 1, '123456789'),
-(2, 1, 2, '123456789');
+(1, 1, 1, '123456789');
 
 -- --------------------------------------------------------
 
@@ -263,8 +256,7 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_mname`, `user_lname`, `user_address`, `user_username`, `user_password`, `type_id`) VALUES
-(1, 'Gelo', '', 'lopez', 'Malabon City', 'gelo', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620', 1),
-(2, 'Cashier', 'Cashier', 'Cashier', 'Cecilia Chapman 711-2880 Nulla St. Mankato Mississippi 96522', 'cashier', 'd9a60dee793334ec2c9dee3fc5a77bab710fa143', 2);
+(1, 'Gelo', '', 'lopez', 'Malabon City', 'gelo', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620', 1);
 
 --
 -- Indexes for dumped tables
@@ -355,7 +347,7 @@ ALTER TABLE `tbl_category`
 -- AUTO_INCREMENT for table `tbl_checkout`
 --
 ALTER TABLE `tbl_checkout`
-  MODIFY `checkout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `checkout_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tbl_dosage`
 --
@@ -375,7 +367,7 @@ ALTER TABLE `tbl_product`
 -- AUTO_INCREMENT for table `tbl_status`
 --
 ALTER TABLE `tbl_status`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_supplier`
 --
@@ -395,7 +387,7 @@ ALTER TABLE `tbl_type`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
