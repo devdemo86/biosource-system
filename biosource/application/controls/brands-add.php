@@ -32,20 +32,32 @@
 
                 }
 
-                $insert = "tbl_brand(`brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`,";
-                $insert .= " `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`)";
+                $date = $_POST['brand'][9]['value'];
 
-                $query = "INSERT INTO ".$insert." VALUES(".$brand.")";
+                $effectiveDate = date('Y-m-d', strtotime("+3 months"));
 
-                $sql = mysqli_query($connection, $query);
+                if(strtotime($date) > strtotime($effectiveDate))  {
 
-                if((int) $sql === 1) {
+                    $insert = "tbl_brand(`brand_name`, `variant_id`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`,";
+                    $insert .= " `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`)";
 
-                    echo 'success';
+                    $query = "INSERT INTO ".$insert." VALUES(".$brand.")";
+
+                    $sql = mysqli_query($connection, $query);
+
+                    if((int) $sql === 1) {
+
+                        echo 'success';
+
+                    } else {
+
+                        echo 'id-error';
+
+                    }
 
                 } else {
 
-                    echo 'id-error';
+                    echo 'invalid-date';
 
                 }
 

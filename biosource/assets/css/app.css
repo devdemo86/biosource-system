@@ -1,7 +1,7 @@
 /* General CSS */
 body {
     background: url(../images/accountbg.jpg) no-repeat;
-    background-size: cover;
+    background-size: contain 100%;
     font-family: "Source Sans Pro", sans-serif;
     font-size: 14px;
 }
@@ -296,6 +296,22 @@ a:hover {
     font-size: 126%;
 }
 
+.bg-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.summary-modal .modal-dialog {
+    max-width: 800px;
+    width: 100%;
+}
+
+.label-critical-supplier {
+    font-size: 14px;
+    margin: 0 5px;
+}
+
 /* Footer CSS */
 .site-footer {
     width: 100%;
@@ -311,12 +327,6 @@ a:hover {
     margin-bottom: 0;
     font-size: 92%;
     letter-spacing: .5px;
-}
-
-.bg-danger {
-    color: #fff;
-    background-color: #d9534f;
-    border-color: #d43f3a;
 }
 
 /* Print CSS */

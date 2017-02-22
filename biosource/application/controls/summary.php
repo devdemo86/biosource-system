@@ -138,7 +138,7 @@
             } if($type == 'summary-brands') {
 
                 $query = "SELECT * FROM tbl_brand b INNER JOIN tbl_generic g ON b.generic_code = g.generic_code INNER JOIN tbl_category c ON ";
-                $query .= "b.category_code = c.category_code INNER JOIN tbl_dosage d ON b.dosage_code = d.dosage_code ORDER BY b.brand_name ASC";
+                $query .= "b.category_code = c.category_code INNER JOIN tbl_dosage d ON b.dosage_code = d.dosage_code INNER JOIN tbl_variant v ON v.variant_id = b.variant_id GROUP BY b.brand_id ORDER BY b.brand_name ASC";
 
                 $sql = mysqli_query($connection, $query);
 
@@ -152,6 +152,7 @@
                                     $content .= '<th>Generic Name</th>';
                                     $content .= '<th class="text-center">Dosage</th>';
                                     $content .= '<th class="text-center">Category</th>';
+                                    $content .= '<th class="text-center">Variant</th>';
                                 $content .= '</tr>';
                             $content .= '</thead>';
                             $content .= '<tbody>';
@@ -163,6 +164,7 @@
                                     $content .= '<td>'.$brand['generic_name'].'</td>';
                                     $content .= '<td class="text-center">'.$brand['dosage_name'].'</td>';
                                     $content .= '<td class="text-center">'.$brand['category_name'].'</td>';
+                                    $content .= '<td class="text-center">'.$brand['variant_name'].'</td>';
                                 $content .= '</tr>';
 
                             }
@@ -182,7 +184,7 @@
             } else if($type == 'summary-products') {
 
                 $query = "SELECT * FROM tbl_product p INNER JOIN tbl_generic g ON p.generic_code = g.generic_code INNER JOIN tbl_category c ON p.category_code = c.category_code";
-                $query .= " INNER JOIN tbl_dosage d ON p.dosage_code = d.dosage_code ORDER BY p.product_name ASC";
+                $query .= " INNER JOIN tbl_dosage d ON p.dosage_code = d.dosage_code INNER JOIN tbl_variant v ON v.variant_id = p.variant_id GROUP BY p.product_id  ORDER BY p.product_name ASC";
 
                 $sql = mysqli_query($connection, $query);
 
@@ -196,6 +198,7 @@
                                     $content .= '<th>Generic Name</th>';
                                     $content .= '<th class="text-center">Dosage</th>';
                                     $content .= '<th class="text-center">Category</th>';
+                                    $content .= '<th class="text-center">Variant</th>';
                                 $content .= '</tr>';
                             $content .= '</thead>';
                             $content .= '<tbody>';
@@ -207,6 +210,7 @@
                                     $content .= '<td>'.$product['generic_name'].'</td>';
                                     $content .= '<td class="text-center">'.$product['dosage_name'].'</td>';
                                     $content .= '<td class="text-center">'.$product['category_name'].'</td>';
+                                    $content .= '<td class="text-center">'.$product['variant_name'].'</td>';
                                 $content .= '</tr>';
 
                             }
@@ -225,11 +229,11 @@
 
             } else if($type == 'summary-outofstock') {
 
-                $query = "SELECT * FROM tbl_brand WHERE brand_qtyperpiece = 0";
+                $query = "SELECT * FROM tbl_brand b INNER JOIN tbl_variant v ON v.variant_id = b.variant_id WHERE b.brand_qtyperpiece = 0 OR b.brand_qtyperbox = 0";
 
                 $sql = mysqli_query($connection, $query);
 
-                $prod = "SELECT * FROM tbl_product WHERE product_qtyperpiece = 0";
+                $prod = "SELECT * FROM tbl_product p INNER JOIN tbl_variant v ON v.variant_id = p.variant_id WHERE p.product_qtyperpiece = 0 OR p.product_qtyperbox = 0";
 
                 $sqlprod = mysqli_query($connection, $prod);
 
@@ -242,6 +246,7 @@
                                     $content .= '<th>Brand / Product</th>';
                                     $content .= '<th>Brand / Product Stock</th>';
                                     $content .= '<th>Brand / Product Expiration</th>';
+                                    $content .= '<th>Brand / Product Variant</th>';
                                     $content .= '<th>Type</th>';
                                 $content .= '</tr>';
                             $content .= '</thead>';
@@ -251,8 +256,9 @@
 
                                 $content .= '<tr>';
                                     $content .= '<td>'.$brand['brand_name'].'</td>';
-                                    $content .= '<td>'.$brand['brand_qtyperpiece'].'</td>';
+                                    $content .= '<td>'.$brand['brand_qtyperpiece'].' / '.$brand['brand_qtyperbox'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($brand['brand_expiration'])).' at '.date('g:i A', strtotime($brand['brand_expiration'])).'</td>';
+                                    $content .= '<td>'.$brand['variant_name'].'</td>';
                                     $content .= '<td><strong>Brand</strong></td>';
                                 $content .= '</tr>';
 
@@ -262,8 +268,9 @@
 
                                 $content .= '<tr>';
                                     $content .= '<td>'.$prod['product_name'].'</td>';
-                                    $content .= '<td>'.$prod['product_qtyperpiece'].'</td>';
+                                    $content .= '<td>'.$prod['product_qtyperpiece'].' / '.$prod['product_qtyperbox'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($prod['product_expiration'])).' at '.date('g:i A', strtotime($prod['product_expiration'])).'</td>';
+                                    $content .= '<td>'.$prod['variant_name'].'</td>';
                                     $content .= '<td><strong>Product</strong></td>';
                                 $content .= '</tr>';
 
@@ -283,11 +290,11 @@
 
             } else if($type == 'summary-criticalstock') {
 
-                $query = "SELECT * FROM tbl_brand WHERE brand_qtyperpiece <= 100";
+                $query = "SELECT * FROM tbl_brand b INNER JOIN tbl_variant v ON v.variant_id = b.variant_id WHERE b.brand_qtyperpiece <= 100 OR b.brand_qtyperbox <= 100";
 
                 $sql = mysqli_query($connection, $query);
 
-                $prod = "SELECT * FROM tbl_product WHERE product_qtyperpiece <= 100";
+                $prod = "SELECT * FROM tbl_product p INNER JOIN tbl_variant v ON v.variant_id = p.variant_id WHERE p.product_qtyperpiece <= 100 OR p.product_qtyperbox <= 100";
 
                 $sqlprod = mysqli_query($connection, $prod);
 
@@ -300,6 +307,7 @@
                                     $content .= '<th>Brand / Product</th>';
                                     $content .= '<th>Brand / Product Stock</th>';
                                     $content .= '<th>Brand / Product Expiration</th>';
+                                    $content .= '<th>Brand / Product Variant</th>';
                                     $content .= '<th>Type</th>';
                                 $content .= '</tr>';
                             $content .= '</thead>';
@@ -309,8 +317,9 @@
 
                                 $content .= '<tr>';
                                     $content .= '<td>'.$brand['brand_name'].'</td>';
-                                    $content .= '<td>'.$brand['brand_qtyperpiece'].'</td>';
+                                    $content .= '<td>'.$brand['brand_qtyperpiece'].' / '.$brand['brand_qtyperbox'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($brand['brand_expiration'])).' at '.date('g:i A', strtotime($brand['brand_expiration'])).'</td>';
+                                    $content .= '<td>'.$brand['variant_name'].'</td>';
                                     $content .= '<td><strong>Brand</strong></td>';
                                 $content .= '</tr>';
 
@@ -320,8 +329,9 @@
 
                                 $content .= '<tr>';
                                     $content .= '<td>'.$prod['product_name'].'</td>';
-                                    $content .= '<td>'.$prod['product_qtyperpiece'].'</td>';
+                                    $content .= '<td>'.$prod['product_qtyperpiece'].' / '.$prod['product_qtyperbox'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($prod['product_expiration'])).' at '.date('g:i A', strtotime($prod['product_expiration'])).'</td>';
+                                    $content .= '<td>'.$prod['variant_name'].'</td>';
                                     $content .= '<td><strong>Product</strong></td>';
                                 $content .= '</tr>';
 
@@ -341,11 +351,11 @@
 
             } else if($type == 'summary-expiration') {
 
-                $query = "SELECT * FROM tbl_brand WHERE brand_expiration < DATE_ADD(CURDATE(), INTERVAL 3 MONTH)";
+                $query = "SELECT * FROM tbl_brand b INNER JOIN tbl_variant v ON v.variant_id = b.variant_id WHERE b.brand_expiration < DATE_ADD(CURDATE(), INTERVAL 3 MONTH)";
 
                 $sql = mysqli_query($connection, $query);
 
-                $prod = "SELECT * FROM tbl_product WHERE product_expiration < DATE_ADD(CURDATE(), INTERVAL 3 MONTH)";
+                $prod = "SELECT * FROM tbl_product p INNER JOIN tbl_variant v ON v.variant_id = p.variant_id WHERE p.product_expiration < DATE_ADD(CURDATE(), INTERVAL 3 MONTH)";
 
                 $sqlprod = mysqli_query($connection, $prod);
 
@@ -358,6 +368,7 @@
                                     $content .= '<th>Brand / Product</th>';
                                     $content .= '<th>Brand / Product Stock</th>';
                                     $content .= '<th>Brand / Product Expiration</th>';
+                                    $content .= '<th>Brand / Product Variant</th>';
                                     $content .= '<th>Type</th>';
                                 $content .= '</tr>';
                             $content .= '</thead>';
@@ -369,6 +380,7 @@
                                     $content .= '<td>'.$brand['brand_name'].'</td>';
                                     $content .= '<td>'.$brand['brand_qtyperpiece'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($brand['brand_expiration'])).' at '.date('g:i A', strtotime($brand['brand_expiration'])).'</td>';
+                                    $content .= '<td>'.$brand['variant_name'].'</td>';
                                     $content .= '<td><strong>Brand</strong></td>';
                                 $content .= '</tr>';
 
@@ -380,6 +392,7 @@
                                     $content .= '<td>'.$prod['product_name'].'</td>';
                                     $content .= '<td>'.$prod['product_qtyperpiece'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($prod['product_expiration'])).' at '.date('g:i A', strtotime($prod['product_expiration'])).'</td>';
+                                    $content .= '<td>'.$prod['variant_name'].'</td>';
                                     $content .= '<td><strong>Product</strong></td>';
                                 $content .= '</tr>';
 
@@ -399,11 +412,11 @@
 
             } else if($type == 'summary-expired') {
 
-                $query = "SELECT * FROM tbl_brand WHERE brand_expiration = CURDATE()";
+                $query = "SELECT * FROM tbl_brand b INNER JOIN tbl_variant v ON v.variant_id = b.variant_id WHERE b.brand_expiration = CURDATE()";
 
                 $sql = mysqli_query($connection, $query);
 
-                $prod = "SELECT * FROM tbl_product WHERE product_expiration = CURDATE()";
+                $prod = "SELECT * FROM tbl_product p INNER JOIN tbl_variant v ON v.variant_id = p.variant_id WHERE p.product_expiration = CURDATE()";
 
                 $sqlprod = mysqli_query($connection, $prod);
 
@@ -416,6 +429,7 @@
                                     $content .= '<th>Brand / Product</th>';
                                     $content .= '<th>Brand / Product Stock</th>';
                                     $content .= '<th>Brand / Product Expiration</th>';
+                                    $content .= '<th>Brand / Product Variant</th>';
                                     $content .= '<th>Type</th>';
                                 $content .= '</tr>';
                             $content .= '</thead>';
@@ -427,6 +441,7 @@
                                     $content .= '<td>'.$brand['brand_name'].'</td>';
                                     $content .= '<td>'.$brand['brand_qtyperpiece'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($brand['brand_expiration'])).' at '.date('g:i A', strtotime($brand['brand_expiration'])).'</td>';
+                                    $content .= '<td>'.$brand['vaiant_name'].'</td>';
                                     $content .= '<td><strong>Brand</strong></td>';
                                 $content .= '</tr>';
 
@@ -438,6 +453,7 @@
                                     $content .= '<td>'.$prod['product_name'].'</td>';
                                     $content .= '<td>'.$prod['product_qtyperpiece'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($prod['product_expiration'])).' at '.date('g:i A', strtotime($prod['product_expiration'])).'</td>';
+                                    $content .= '<td>'.$prod['variant_name'].'</td>';
                                     $content .= '<td><strong>Product</strong></td>';
                                 $content .= '</tr>';
 

@@ -280,7 +280,7 @@ $(function() {
         }
     });
 
-    $('.form-add-brand').submit(function(e) {
+    $('.form-add-brand').submit(function(e) { //
         e.preventDefault();
         var getBrand = $(this).serializeArray();
         $('.brand-button-add').text('Saving...').css('opacity', '.8').attr('disabled', 'disabled');
@@ -290,12 +290,16 @@ $(function() {
             data: {brand: getBrand},
             success: function(result) {
                 $('.brand-button-add').text('Submit').css('opacity', 1).removeAttr('disabled');
-                if(result === 'success') {
-                    $('.process-block, .process-alert-success').removeClass('hidden');
-                    $('.process-alert-error').addClass('hidden');
+                if(result != 'invalid-date') {
+                    if(result === 'success') {
+                        $('.process-block, .process-alert-success').removeClass('hidden');
+                        $('.process-alert-error').addClass('hidden');
+                    } else {
+                        $('.process-block, .process-alert-error').removeClass('hidden');
+                        $('.process-alert-success').addClass('hidden');
+                    }
                 } else {
-                    $('.process-block, .process-alert-error').removeClass('hidden');
-                    $('.process-alert-success').addClass('hidden');
+                    $('.expiration-modal').modal();
                 }
             },
             error: function() {
@@ -314,12 +318,16 @@ $(function() {
             data: {product: getProduct},
             success: function(result) {
                 $('.product-button-add').text('Submit').css('opacity', 1).removeAttr('disabled');
-                if(result === 'success') {
-                    $('.process-block, .process-alert-success').removeClass('hidden');
-                    $('.process-alert-error').addClass('hidden');
+                if(result != 'invalid-date') {
+                    if(result === 'success') {
+                        $('.process-block, .process-alert-success').removeClass('hidden');
+                        $('.process-alert-error').addClass('hidden');
+                    } else {
+                        $('.process-block, .process-alert-error').removeClass('hidden');
+                        $('.process-alert-success').addClass('hidden');
+                    }
                 } else {
-                    $('.process-block, .process-alert-error').removeClass('hidden');
-                    $('.process-alert-success').addClass('hidden');
+                    $('.expiration-modal').modal();
                 }
             },
             error: function() {
@@ -555,6 +563,22 @@ $(function() {
         });
     });
 
+    $('.form-notify-supplier select').change(function() {
+        var getValSelected = $(this).val();
+        if($.trim(getValSelected) != "") {
+            $.ajax({
+                url: '../controls/notify-supplier-item.php',
+                type: 'POST',
+                data: {selected: getValSelected, type: true},
+                success: function(result) {
+                    $('.critical-supplier-content').html(result);
+                }
+            });
+        } else {
+            $('.critical-supplier-content').html('No critical item');
+        }
+    });
+
     $('body').delegate('a[href^="#prod-update"]', 'click', function(e) {
         e.preventDefault();
         var product = $(this).attr('data-id');
@@ -607,10 +631,17 @@ $(function() {
 
     $('.inventory-delete').click(function() {
         $(this).text('Deleting...').css('opacity', '.8').attr('disabled', 'disabled');
+        var data = {prodid: inventory},
+            dataUrl = '../controls/products-delete.php',
+            dataCode = $('.inventory').attr('data-code');
+        if(dataCode != 'product') {
+            data = {brandid: inventory};
+            dataUrl = '../controls/brands-delete.php';
+        }
         $.ajax({
-            url: '../controls/products-delete.php',
+            url: dataUrl,
             type: 'POST',
-            data: {prodid: inventory},
+            data: data,
             success: function(result) {
                 $('.inventory-delete').text('Proceed').css('opacity', 1).removeAttr('disabled');
                 if(result === 'success') {
@@ -635,6 +666,7 @@ $(function() {
             title = newHref.replace(newHref[0], newHref[0].toUpperCase());
         $(this).html('<span class="glyphicon glyphicon-barcode"></span> &nbsp;'+ title +' Inventory');
         $(this).attr('href', '#'+ newHref);
+        $('.inventory').attr('data-code', newHref);
         $.ajax({
             url: newUrl,
             type: 'POST',
@@ -801,12 +833,13 @@ $(function() {
         e.preventDefault();
         $('.error-delete').remove();
         if(getHowMany.length == 1 && 'delete-how-many-piece' == getHowMany[0].name) {
-            proceed = getHowMany[0].value > 0 && getHowMany[0].value != 0 && getHowMany[0].value <= checkPiece ? true : false;
+            console.log(getHowMany[0].value <= parseInt(checkPiece))
+            proceed = getHowMany[0].value > 0 && getHowMany[0].value != 0 && getHowMany[0].value <= parseInt(checkPiece) ? true : false;
         } else {
             if(getHowMany.length == 1 && 'delete-how-many-box' == getHowMany[1].name) {
-                proceed = getHowMany[1].value > 0 && getHowMany[1].value != 0 && getHowMany[1].value <= checkBox ? true : false;
+                proceed = getHowMany[1].value > 0 && getHowMany[1].value != 0 && getHowMany[1].value <= parseInt(checkBox) ? true : false;
             } else {
-                if((getHowMany[1].value >= 0 && getHowMany[1].value <= checkBox) && (getHowMany[0].value >= 0 && getHowMany[0].value <= checkPiece)) {
+                if((getHowMany[1].value >= 0 && getHowMany[1].value <= parseInt(checkBox)) && (getHowMany[0].value >= 0 && getHowMany[0].value <= parseInt(checkPiece))) {
                     proceed = true;
                 } else {
                     proceed = false;
@@ -978,6 +1011,7 @@ $(function() {
             success: function(response) {
                 if(response == 'success') {
                     $('.'+ getCode).append('<li>'+ getVal +'</li>');
+                    $('.cms-form-add-cms').find('input').val('');
                 } else {
                     alert('Name already exist');
                 }

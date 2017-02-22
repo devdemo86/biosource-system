@@ -37,8 +37,23 @@
                 <div class="branded">
                     <form class="col-lg-12 form-add-product" autocomplete="off">
                         <div class="form-group">
-                            <label for="product-name">Branded Name:</label>
-                            <input type="text" name="product-name" class="form-control" placeholder="Branded Name" required="required">
+                            <div class="clearfix row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                            <label for="product-name">Branded Name:</label>
+                                            <input type="text" name="product-name" class="form-control" placeholder="Branded Name" required="required">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label for="product-name">Variant Name:</label>
+                                            <select class="form-control" name="vartiant-name" required="required">
+                                                <option selected="selected" disabled="disabled" value="">Available</option>
+                                                <?php require('../controls/variant.php'); ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <span class="help-block"></span>
                         <div class="form-group clearfix">
@@ -128,8 +143,23 @@
                 <div class="generic hidden">
                     <form class="col-lg-12 form-add-brand" autocomplete="off">
                         <div class="form-group clearfix">
-                            <label for="brand-name">Product Name:</label>
-                            <input type="text" name="brand-name" class="form-control" placeholder="Product Name" required="required">
+                            <div class="clearfix row">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-lg-9">
+                                            <label for="brand-name">Product Name:</label>
+                                            <input type="text" name="brand-name" class="form-control" placeholder="Product Name" required="required">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label for="product-name">Variant Name:</label>
+                                            <select class="form-control" name="vartiant-name" required="required">
+                                                <option selected="selected" disabled="disabled" value="">Available</option>
+                                                <?php require('../controls/variant.php'); ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <span class="help-block"></span>
                         <div class="form-group clearfix">
@@ -340,7 +370,7 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="row">
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <form class="cms-form-add-cms" data-code="generic" autocomplete="off">
                                             <div class="form-group">
                                                 <label for="generic-name">Generic Name:</label>
@@ -358,7 +388,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <form class="cms-form-add-cms" data-code="dosage" autocomplete="off">
                                             <div class="form-group">
                                                 <label for="dosage">Dosage:</label>
@@ -376,7 +406,7 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4">
+                                    <div class="col-lg-3">
                                         <form class="cms-form-add-cms" data-code="category" autocomplete="off">
                                             <div class="form-group">
                                                 <label for="generic-name">Category Name:</label>
@@ -391,6 +421,24 @@
                                         <div class="clearfix">
                                             <ul class="list-item-display category">
                                                 <?php require_once('../controls/category-cms.php'); ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <form class="cms-form-add-cms" data-code="variant" autocomplete="off">
+                                            <div class="form-group">
+                                                <label for="generic-name">Variant Name:</label>
+                                                <input type="text" name="variant-name-opt" placeholder="Variant Name" class="form-control" required="required">
+                                            </div>
+                                            <div class="clearfix">
+                                                <button type="submit" class="btn btn-primary pull-right">
+                                                    <i class="glyphicon glyphicon-plus"></i> &nbsp;Add
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="clearfix">
+                                            <ul class="list-item-display variant">
+                                                <?php require_once('../controls/variant-cms.php'); ?>
                                             </ul>
                                         </div>
                                     </div>
@@ -422,7 +470,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="inventory hidden">
+            <div class="inventory hidden" data-code="product">
                 <p class="filter-inventory clearfix mb10">
                     <a href="#generic" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-barcode"></span> &nbsp;Generic Inventory</a>
                 </p>
@@ -497,20 +545,25 @@
                     <div class="form-group mb10">
                         <label for="email-supplier">Supplier Contact:</label>
                         <select class="form-control" name="supplier-email" required="required">
-                            <option value="" selected="selected" disabled="disabled">Select email</option>
-                            <?php require_once('../controls/suppliers-contact.php'); ?>
+                            <?php require('../controls/suppliers-contact.php'); ?>
                         </select>
                     </div>
                     <div class="form-group mb10">
                         <label for="supplier-message">Message:</label>
-                        <textarea name="supplier-message" class="form-control supplier-message" required="required"></textarea>
+                        <textarea name="supplier-message" class="form-control supplier-message" placeholder="Your message to the selected supplier" required="required"></textarea>
+                    </div>
+                    <div class="clearfix">
+                        <label for="supplier-message">Stock check: Name - Variant (Piece / Box)</label>
+                        <div class="well well-sm mb10 critical-supplier-content">
+                            <?php require_once('../controls/notify-supplier-item.php'); ?>
+                        </div>
                     </div>
                     <div class="mb10">
                         <div class="alert alert-success process-alert-success hidden mb0" role="alert">
                             <strong>Well done!</strong> Your message was sent successfully to your supplier..
                         </div>
                         <div class="alert alert-danger process-alert-error hidden mb0" role="alert">
-                            <strong>Oooops!</strong> Change a few things up and try submitting again.
+                            <strong>Oooops!</strong> You cant send a message via local server, it must be on a live hosting.
                         </div>
                     </div>
                     <div class="clearfix">
@@ -779,6 +832,28 @@
                     <h4 class="modal-title text-white">Summary</h4>
                 </div>
                 <div class="modal-body summary-content"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="expiration-modal modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form class="form-update-inventory">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title text-white">Expiration Validation</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center alert alert-danger mb0">
+                        You cannot enter an expiration date within this day or atleast 4 months of expiration date starting from date today.
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2017 at 09:30 AM
+-- Generation Time: Feb 22, 2017 at 03:12 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -40,15 +40,16 @@ CREATE TABLE `tbl_brand` (
   `brand_holdingcost` int(11) NOT NULL,
   `brand_orderingcost` int(11) NOT NULL,
   `brand_totalqtyperbox` int(11) NOT NULL,
-  `brand_supplier` varchar(100) NOT NULL
+  `brand_supplier` varchar(100) NOT NULL,
+  `variant_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_brand`
 --
 
-INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`) VALUES
-(1, 'Biogesic', 1, 1, 1, 100, 1000, 2, 40, '2017-02-13', 10000, 10000, 10000, 'mercury@gmail.com');
+INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`, `variant_id`) VALUES
+(1, 'RiteMed', 1, 1, 1, 10, 10, 5, 50, '2020-02-19', 10000, 10000, 100, 'mercury@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,6 @@ CREATE TABLE `tbl_checkout` (
   `checkout_qtypiece` int(11) NOT NULL,
   `checkout_qtybox` int(11) NOT NULL,
   `checkout_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `checkout_price` int(11) NOT NULL,
   `checkout_type` varchar(20) NOT NULL,
   `item_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
@@ -149,15 +149,16 @@ CREATE TABLE `tbl_product` (
   `product_holdingcost` int(11) NOT NULL,
   `product_orderingcost` int(11) NOT NULL,
   `product_totalqtyperbox` int(11) NOT NULL,
-  `product_supplier` varchar(100) NOT NULL
+  `product_supplier` varchar(100) NOT NULL,
+  `variant_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_product`
 --
 
-INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`, `product_supplier`) VALUES
-(1, 'Pharex B', 1, 1, 1, 100, 1000, 27, 500, '2020-03-31', 20000, 20000, 20, '');
+INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`, `product_supplier`, `variant_id`) VALUES
+(1, 'Pharex B', 1, 1, 1, 40, 90, 27, 270, '2020-02-19', 5000, 5000, 10, 'mercury@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -177,7 +178,8 @@ CREATE TABLE `tbl_status` (
 --
 
 INSERT INTO `tbl_status` (`status_id`, `status_remarks`, `user_id`, `status_contact`) VALUES
-(1, 1, 1, '123456789');
+(1, 1, 1, '123456789'),
+(2, 1, 2, '123456789');
 
 -- --------------------------------------------------------
 
@@ -199,7 +201,8 @@ CREATE TABLE `tbl_supplier` (
 --
 
 INSERT INTO `tbl_supplier` (`supplier_id`, `supplier_name`, `supplier_contact`, `supplier_address`, `supplier_status`, `supplier_date`) VALUES
-(1, 'mercury drug store', 'mercury@gmail.com', '1045 m. naval st, city of navotas, 1485 metro manila', 1, '2017-02-13 16:02:31');
+(1, 'mercury drug store', 'mercury@gmail.com', '1045 m. naval st, city of navotas, 1485 metro manila', 1, '2017-02-13 16:02:31'),
+(2, 'gelo', 'gelo@gmail.com', 'test', 1, '2017-02-21 19:44:37');
 
 -- --------------------------------------------------------
 
@@ -214,6 +217,13 @@ CREATE TABLE `tbl_transaction` (
   `trans_citizen` varchar(100) NOT NULL,
   `trans_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_transaction`
+--
+
+INSERT INTO `tbl_transaction` (`trans_id`, `trans_price`, `trans_cashier`, `trans_citizen`, `trans_date`) VALUES
+(1, '2,376.00', 2, '23312312313', '2017-02-21 19:53:01');
 
 -- --------------------------------------------------------
 
@@ -256,7 +266,29 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`user_id`, `user_fname`, `user_mname`, `user_lname`, `user_address`, `user_username`, `user_password`, `type_id`) VALUES
-(1, 'Gelo', '', 'lopez', 'Malabon City', 'gelo', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620', 1);
+(1, 'Gelo', '', 'lopez', 'Malabon City', 'gelo', '74913f5cd5f61ec0bcfdb775414c2fb3d161b620', 1),
+(2, 'Cashier', 'Cashier', 'Cashier', 'Cecilia Chapman 711-2880 Nulla St. Mankato Mississippi 96522', 'cashier', 'd9a60dee793334ec2c9dee3fc5a77bab710fa143', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_variant`
+--
+
+CREATE TABLE `tbl_variant` (
+  `variant_id` int(11) NOT NULL,
+  `variant_name` text NOT NULL,
+  `slog` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_variant`
+--
+
+INSERT INTO `tbl_variant` (`variant_id`, `variant_name`, `slog`) VALUES
+(3, 'Capsule', 'capsule'),
+(4, 'Tablet', 'tablet'),
+(5, 'Syrup', 'syrup');
 
 --
 -- Indexes for dumped tables
@@ -330,6 +362,12 @@ ALTER TABLE `tbl_user`
   ADD UNIQUE KEY `user_username` (`user_username`);
 
 --
+-- Indexes for table `tbl_variant`
+--
+ALTER TABLE `tbl_variant`
+  ADD PRIMARY KEY (`variant_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -337,7 +375,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_category`
 --
@@ -362,22 +400,22 @@ ALTER TABLE `tbl_generic`
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `tbl_status`
 --
 ALTER TABLE `tbl_status`
-  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_supplier`
 --
 ALTER TABLE `tbl_supplier`
-  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `supplier_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_transaction`
 --
 ALTER TABLE `tbl_transaction`
-  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_type`
 --
@@ -387,7 +425,12 @@ ALTER TABLE `tbl_type`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `tbl_variant`
+--
+ALTER TABLE `tbl_variant`
+  MODIFY `variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

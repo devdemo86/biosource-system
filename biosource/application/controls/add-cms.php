@@ -74,6 +74,36 @@
 
                 }
 
+            } else if($code == 'variant') {
+
+                $slog = strtolower($name);
+
+                $exist = "SELECT * FROM tbl_variant WHERE slog = TRIM('".$slog."')";
+
+                $query = mysqli_query($connection, $exist);
+
+                if($query->num_rows == 0) {
+
+                    $insert = "INSERT INTO tbl_variant VALUES('', '".$name."', '".str_replace(' ', '-', $slog)."')";
+
+                    $sql = mysqli_query($connection, $insert);
+
+                    if((int) $sql == 1) {
+
+                        echo 'success';
+
+                    } else {
+
+                        echo 'error';
+
+                    }
+
+                } else {
+
+                    echo 'exist';
+
+                }
+
             } else {
 
                 $slog = strtolower($name);
