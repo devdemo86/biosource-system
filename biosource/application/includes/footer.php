@@ -83,6 +83,40 @@
                 </div>
             </div>
         </div>
+        <div class="barcode-modal modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <form class="modal-content barcode-form" autocomplete="off">
+                    <div class="modal-header bg-primary">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title text-white">Barcode Generator</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label>Branded / Generic Item:</label>
+                                        <select class="form-control">
+                                            <option value="">Select Item</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Barcode Generated:</label>
+                                        <input type="text" name="barcode-generated" readonly="readonly" value="No item selected" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <script src="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/js/jquery-3.1.0.min.js"></script>
         <script src="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/js/bootstrap.min.js"></script>
         <script src="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/js/app.js"></script>

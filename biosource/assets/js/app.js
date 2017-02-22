@@ -59,6 +59,11 @@ $(function() {
         }
     });
 
+    $('a[href^="#generate-barcode"]').click(function(e) {
+        e.preventDefault();
+        $('.barcode-modal').modal();
+    });
+
     $('a[href^="#forgot-password"]').click(function(e) {
         e.preventDefault();
         $('.forgot-password-modal').modal();

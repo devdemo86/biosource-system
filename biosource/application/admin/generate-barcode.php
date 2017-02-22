@@ -7,7 +7,7 @@
 
         require_once('../controls/connection.php');
 
-        
+        require_once('../controls/barcode-generator.php');
 
     } else {
 

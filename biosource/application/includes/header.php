@@ -26,7 +26,7 @@
                         <div class="dropdown-container">
                             <ul class="dropdown-option">
                                 <?php if($_SESSION['type_id'] == 1): ?>
-                                <li><a href="generate-barcode"><span class="glyphicon glyphicon-barcode"></span> &nbsp; Generate Barcode</a></li>
+                                <li><a href="#generate-barcode"><span class="glyphicon glyphicon-barcode"></span> &nbsp; Generate Barcode</a></li>
                                 <?php endif; ?>
                                 <li><a href="#changepass"><span class="glyphicon glyphicon-pencil"></span> &nbsp;Change Password</a></li>
                                 <li><a href="#logout"><span class="glyphicon glyphicon-log-out"></span> &nbsp;Sign out</a></li>
