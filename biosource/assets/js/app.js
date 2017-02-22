@@ -930,6 +930,7 @@ $(function() {
 
     $('.payment-cash').submit(function(e) {
         e.preventDefault();
+        $(this).find('.btn-payment').text('Processing...').attr('disabled', 'disabled');
         var getCashierInput = $(this).serializeArray()[0].value,
             fromCashier = getCashierInput.replace(',', '').split('.')[0],
             fromAmountDue = getTotalPrice.replace(',', '').split('.')[0];
@@ -938,8 +939,9 @@ $(function() {
             $.ajax({
                 url: '../controls/pos-transaction.php',
                 type: 'POST',
-                data: {proceed: true, citizen: getCitizenId, total: getTotalPrice, cashier: getCashier},
+                data: {proceed: true, citizen: getCitizenId, total: fromCashier, cashier: getCashier, amount: fromAmountDue},
                 success: function(result) {
+                    $('.payment-cash').find('.btn-payment').text('Submit').removeAttr('disabled');
                     $('.payment-modal').modal('hide');
                     $('.change-price').text(Number(getCheck.toFixed(1)).toLocaleString());
                     $('.change-currency-modal').modal({
@@ -948,7 +950,7 @@ $(function() {
                     });
                     setTimeout(function() {
                         $('.change-currency-modal').modal('hide');
-                        window.print();
+                        $(location).attr('href', 'transaction-print?transid='+ result);
                     }, 2000);
                 },
                 error: function() {
@@ -958,6 +960,10 @@ $(function() {
         } else {
             $('.payment-message').removeClass('hidden');
         }
+    });
+
+    $('.btn-print-receipt').click(function() {
+        window.print();
     });
 
     $('.btn-citizen-id').click(function() {

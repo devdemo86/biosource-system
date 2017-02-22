@@ -248,11 +248,7 @@
                     <h1 class="text-center">Php <span class="change-price"></span>.00</h1>
                     <h4 class="text-center">Thank You!</h4>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">
-                        <span class="glyphicon glyphicon-check"></span> &nbsp;Done
-                    </button>
-                </div>
+                <div class="modal-footer"></div>
             </form>
         </div>
     </div>

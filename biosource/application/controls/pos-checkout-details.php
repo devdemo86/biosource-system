@@ -56,7 +56,7 @@
 
                     $totalprice = ($row['checkout_qtypiece'] * $item[$tbl.'priceperpiece']) + ($row['checkout_qtybox'] * $item[$tbl.'priceperbox']);
 
-                    $totalexpense = $totalprice;
+                    $totalexpense += $totalprice;
 
                     $content .= '<td><strong>P</strong> '.number_format($totalprice, 2).'</td>';
                     $content .= '<td>'.date('M d, Y', strtotime($row['checkout_date'])).' <strong>at</strong> '.date('g:i:s A', strtotime($row['checkout_date'])).'</td>';

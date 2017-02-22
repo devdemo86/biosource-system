@@ -1,7 +1,8 @@
 /* General CSS */
 body {
     background: url(../images/accountbg.jpg) no-repeat;
-    background-size: contain 100%;
+    background-size: cover;
+    background-attachment: fixed;
     font-family: "Source Sans Pro", sans-serif;
     font-size: 14px;
 }
@@ -312,6 +313,34 @@ a:hover {
     margin: 0 5px;
 }
 
+.receipt {
+    max-width: 330px;
+    width: 100%;
+    height: auto;
+    margin: 2em auto;
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 3px 2px 4px 1px #797979;
+}
+
+.receipt-content .border {
+    display: block;
+    width: 100%;
+    border-top: 1px dashed #6b6b6b;
+    padding: 3px 0;
+    border-bottom: 1px dashed #6b6b6b;
+}
+
+.receipt-date-or {
+    padding: 5px;
+}
+
+.thank-you {
+    margin-top: 25px;
+}
+
 /* Footer CSS */
 .site-footer {
     width: 100%;
@@ -329,7 +358,23 @@ a:hover {
     letter-spacing: .5px;
 }
 
+.receipt-footer {
+    margin-top: 2em;
+}
+
 /* Print CSS */
-.print-css {
-    display: none;
+@media print {
+    .print-css {
+        display: none !important;
+    }
+}
+
+@page {
+    margin: 0;
+}
+
+.btn-print-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
 }
