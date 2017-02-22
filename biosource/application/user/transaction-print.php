@@ -15,6 +15,7 @@
         <main class="receipt">
             <div class="text-center btn-print-container print-css">
                 <button type="button" class="btn btn-primary btn-print-receipt"><span class="glyphicon glyphicon-print"></span> &nbsp;Print Receipt</button>
+                <button type="button" class="btn btn-primary btn-done-trans"><span class="glyphicon glyphicon-check"></span> &nbsp;Done</button>
             </div>
             <h4 class="text-center">BIOSOURCE DRUGSTORE &amp; GEN. MERCHANDISE</h4>
             <p class="text-center">579 A. Mabini Street Sangandaan Plaza, Caloocan City</p>
@@ -47,7 +48,7 @@
                 <p>Business Style:</p>
                 <p class="text-center thank-you">Thank You! Come again.</p>
                 <p class="text-center"><strong>***</strong> This is serve as your OFFICIAL RECEIPT <strong>***</strong></p>
-                <p class="text-center">Thesis System</p>
+                <p class="text-center">Thesis System of City of Malabon University</p>
                 <p class="text-center">Maya-maya cor. Pampano St., Dagat-Dagatan, Malabon City 1470, Philippines</p>
                 <p class="text-center">THIS INVOICE / RECEIPT SHALL BE VALID FOR FIVE (5) YEAR FROM THE DATE OF THE PERMIT TO USE.</p>
             </div>

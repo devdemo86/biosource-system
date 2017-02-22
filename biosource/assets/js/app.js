@@ -934,7 +934,7 @@ $(function() {
         var getCashierInput = $(this).serializeArray()[0].value,
             fromCashier = getCashierInput.replace(',', '').split('.')[0],
             fromAmountDue = getTotalPrice.replace(',', '').split('.')[0];
-        if(parseInt(fromCashier) > parseInt(fromAmountDue)) {
+        if(parseInt(fromCashier) >= parseInt(fromAmountDue)) {
             var getCheck = (parseInt(fromCashier) - parseInt(fromAmountDue)) * 1.00;
             $.ajax({
                 url: '../controls/pos-transaction.php',
@@ -1020,6 +1020,21 @@ $(function() {
                     $('.cms-form-add-cms').find('input').val('');
                 } else {
                     alert('Name already exist');
+                }
+            }
+        });
+    });
+
+    $('.btn-done-trans').click(function() {
+        var getIds = $('.trans-id').attr('data-transaction-affted');
+        $(this).text('Finishing transaction...');
+        $.ajax({
+            url: '../controls/finish-transaction.php',
+            type: 'POST',
+            data: {ids: getIds},
+            success: function(result) {
+                if(result == 'user-home') {
+                    $(location).attr('href', 'user-home');
                 }
             }
         });

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2017 at 08:10 AM
+-- Generation Time: Feb 22, 2017 at 12:17 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -49,7 +49,7 @@ CREATE TABLE `tbl_brand` (
 --
 
 INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`, `variant_id`) VALUES
-(1, 'RiteMed', 1, 1, 1, 5, 5, 5, 50, '2020-02-19', 10000, 10000, 100, 'mercury@gmail.com', 3);
+(1, 'RiteMed', 1, 1, 1, 3, 5, 5, 50, '2020-02-19', 10000, 10000, 100, 'mercury@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -158,7 +158,7 @@ CREATE TABLE `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`, `product_supplier`, `variant_id`) VALUES
-(1, 'Pharex B', 1, 1, 1, 30, 20, 27, 270, '2020-02-19', 5000, 5000, 10, 'mercury@gmail.com', 3);
+(1, 'Pharex B', 1, 1, 1, 30, 5, 27, 270, '2020-02-19', 5000, 5000, 10, 'mercury@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -220,15 +220,19 @@ CREATE TABLE `tbl_transaction` (
   `trans_qtypiece` int(11) NOT NULL,
   `trans_qtybox` int(11) NOT NULL,
   `trans_type` varchar(20) NOT NULL,
-  `item_id` int(11) NOT NULL
+  `item_id` int(11) NOT NULL,
+  `is_finish` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_transaction`
 --
 
-INSERT INTO `tbl_transaction` (`trans_id`, `trans_price`, `trans_cashier`, `trans_citizen`, `trans_date`, `amount`, `trans_qtypiece`, `trans_qtybox`, `trans_type`, `item_id`) VALUES
-(1, '500', 2, '', '2017-02-22 14:57:26', '135', 5, 0, 'tbl_product', 1);
+INSERT INTO `tbl_transaction` (`trans_id`, `trans_price`, `trans_cashier`, `trans_citizen`, `trans_date`, `amount`, `trans_qtypiece`, `trans_qtybox`, `trans_type`, `item_id`, `is_finish`) VALUES
+(1, '500', 2, '', '2017-02-22 14:57:26', '135', 5, 0, 'tbl_product', 1, 1),
+(2, '200', 2, '', '2017-02-22 18:33:54', '135', 5, 0, 'tbl_product', 1, 1),
+(3, '100', 2, '', '2017-02-22 18:50:59', '100', 0, 2, 'tbl_brand', 1, 1),
+(4, '270', 2, '', '2017-02-22 19:16:37', '270', 10, 0, 'tbl_product', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -293,7 +297,8 @@ CREATE TABLE `tbl_variant` (
 INSERT INTO `tbl_variant` (`variant_id`, `variant_name`, `slog`) VALUES
 (3, 'Capsule', 'capsule'),
 (4, 'Tablet', 'tablet'),
-(5, 'Syrup', 'syrup');
+(5, 'Syrup', 'syrup'),
+(6, 'Pills', 'pills');
 
 --
 -- Indexes for dumped tables
@@ -380,7 +385,7 @@ ALTER TABLE `tbl_variant`
 -- AUTO_INCREMENT for table `tbl_brand`
 --
 ALTER TABLE `tbl_brand`
-  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `brand_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_category`
 --
@@ -405,7 +410,7 @@ ALTER TABLE `tbl_generic`
 -- AUTO_INCREMENT for table `tbl_product`
 --
 ALTER TABLE `tbl_product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tbl_status`
 --
@@ -420,7 +425,7 @@ ALTER TABLE `tbl_supplier`
 -- AUTO_INCREMENT for table `tbl_transaction`
 --
 ALTER TABLE `tbl_transaction`
-  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `trans_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tbl_type`
 --
@@ -435,7 +440,7 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_variant`
 --
 ALTER TABLE `tbl_variant`
-  MODIFY `variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `variant_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
