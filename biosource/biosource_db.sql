@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2017 at 03:12 AM
+-- Generation Time: Feb 22, 2017 at 08:10 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -49,7 +49,7 @@ CREATE TABLE `tbl_brand` (
 --
 
 INSERT INTO `tbl_brand` (`brand_id`, `brand_name`, `generic_code`, `dosage_code`, `category_code`, `brand_qtyperbox`, `brand_qtyperpiece`, `brand_priceperpiece`, `brand_priceperbox`, `brand_expiration`, `brand_holdingcost`, `brand_orderingcost`, `brand_totalqtyperbox`, `brand_supplier`, `variant_id`) VALUES
-(1, 'RiteMed', 1, 1, 1, 10, 10, 5, 50, '2020-02-19', 10000, 10000, 100, 'mercury@gmail.com', 3);
+(1, 'RiteMed', 1, 1, 1, 5, 5, 5, 50, '2020-02-19', 10000, 10000, 100, 'mercury@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -158,7 +158,7 @@ CREATE TABLE `tbl_product` (
 --
 
 INSERT INTO `tbl_product` (`product_id`, `product_name`, `generic_code`, `dosage_code`, `category_code`, `product_qtyperbox`, `product_qtyperpiece`, `product_priceperpiece`, `product_priceperbox`, `product_expiration`, `product_holdingcost`, `product_orderingcost`, `product_totalqtyperbox`, `product_supplier`, `variant_id`) VALUES
-(1, 'Pharex B', 1, 1, 1, 40, 90, 27, 270, '2020-02-19', 5000, 5000, 10, 'mercury@gmail.com', 3);
+(1, 'Pharex B', 1, 1, 1, 30, 20, 27, 270, '2020-02-19', 5000, 5000, 10, 'mercury@gmail.com', 3);
 
 -- --------------------------------------------------------
 
@@ -215,15 +215,20 @@ CREATE TABLE `tbl_transaction` (
   `trans_price` varchar(100) NOT NULL,
   `trans_cashier` int(11) NOT NULL,
   `trans_citizen` varchar(100) NOT NULL,
-  `trans_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `trans_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `amount` varchar(100) NOT NULL,
+  `trans_qtypiece` int(11) NOT NULL,
+  `trans_qtybox` int(11) NOT NULL,
+  `trans_type` varchar(20) NOT NULL,
+  `item_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_transaction`
 --
 
-INSERT INTO `tbl_transaction` (`trans_id`, `trans_price`, `trans_cashier`, `trans_citizen`, `trans_date`) VALUES
-(1, '2,376.00', 2, '23312312313', '2017-02-21 19:53:01');
+INSERT INTO `tbl_transaction` (`trans_id`, `trans_price`, `trans_cashier`, `trans_citizen`, `trans_date`, `amount`, `trans_qtypiece`, `trans_qtybox`, `trans_type`, `item_id`) VALUES
+(1, '500', 2, '', '2017-02-22 14:57:26', '135', 5, 0, 'tbl_product', 1);
 
 -- --------------------------------------------------------
 
