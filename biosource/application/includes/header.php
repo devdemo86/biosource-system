@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BIOSOURCE Drug Store</title>
         <link rel="stylesheet" href="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/css/daterangepicker.css">
         <link rel="stylesheet" href="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/css/print.css">
         <link rel="stylesheet" href="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/css/app.css">
         <link rel="shortcut icon" href="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/images/company-logo.jpg">

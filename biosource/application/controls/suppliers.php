@@ -31,10 +31,10 @@
                     if((int) $id === 1) {
 
                         $content .= '<td class="text-center">
-                                        <a href="#update" id="'.$row['supplier_id'].'" class="btn btn-primary" data-code="suppliers">
+                                        <a href="#update" id="'.$row['supplier_id'].'" class="btn btn-primary btn-sm" data-code="suppliers">
                                             <span>Update &nbsp;<span class="glyphicon glyphicon-pencil"></span></span>
                                         </a>
-                                        <a href="#delete" id="'.$row['supplier_id'].'" class="btn btn-danger" data-code="suppliers">
+                                        <a href="#delete" id="'.$row['supplier_id'].'" class="btn btn-danger btn-sm" data-code="suppliers">
                                             <span>Remove &nbsp;<span class="glyphicon glyphicon-trash"></span></span>
                                         </a>
                                     </td>';

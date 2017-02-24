@@ -517,12 +517,28 @@
             </div>
             <div class="generate-report hidden">
                 <div class="clearfix">
-                    <button type="button" class="btn btn-primary pull-left btn-report-summary" data-code="all">
-                        Summary Details &nbsp;<i class="glyphicon glyphicon-list-alt"></i>
-                    </button>
-                    <button type="button" class="btn btn-primary pull-right btn-report">
-                        Generate Report &nbsp;( <span class="glyphicon glyphicon-print"></span> Print )
-                    </button>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-primary pull-left btn-report-summary" data-code="all">
+                                Summary Details &nbsp;<i class="glyphicon glyphicon-list-alt"></i>
+                            </button>
+                        </div>
+                        <form class="search-generate-report col-lg-4">
+                            <div class="input-group">
+                                <input type="text" name="generate-report-index" placeholder="Choose date here" class="form-control date-range-picker">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-secondary btn-primary" type="submit">
+                                        <span class="glyphicon glyphicon-search"></span> &nbsp; Search
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                        <div class="col-lg-4">
+                            <button type="button" class="btn btn-primary btn-report pull-right">
+                                Generate Report &nbsp;( <span class="glyphicon glyphicon-print"></span> Print )
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <span class="help-block"></span>
                 <table class="table table-responsive">
@@ -535,7 +551,7 @@
                             <th>Transaction Responsible</th>
                         </tr>
                     </thead>
-                    <tbody class="table-report">
+                    <tbody class="table-report generate-report-ajax">
                         <?php require_once('../controls/generate-report.php'); ?>
                     </tbody>
                 </table>

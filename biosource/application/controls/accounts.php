@@ -30,10 +30,10 @@
                     if((int) $id === 1) {
 
                         $content .= '<td>
-                                        <a href="#update" id="'.$row['user_id'].'" class="btn btn-primary" data-code="accounts">
+                                        <a href="#update" id="'.$row['user_id'].'" class="btn btn-primary btn-sm" data-code="accounts">
                                             <span>Update &nbsp;<span class="glyphicon glyphicon-pencil"></span></span>
                                         </a>
-                                        <a href="#delete" id="'.$row['user_id'].'" class="btn btn-danger" data-code="accounts">
+                                        <a href="#delete" id="'.$row['user_id'].'" class="btn btn-danger btn-sm" data-code="accounts">
                                             <span>Remove &nbsp;<span class="glyphicon glyphicon-trash"></span></span>
                                         </a>
                                     </td>';

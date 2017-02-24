@@ -4,6 +4,8 @@ $(function() {
 
     $('.focus').focus();
 
+    $('.date-range-picker').daterangepicker();
+
     var getTimeDate = function() {
         var date = new Date(),
             sec = date.getSeconds().toString().length == 1 ? '0'+ date.getSeconds() : date.getSeconds(),
@@ -963,6 +965,7 @@ $(function() {
                 }
             });
         } else {
+            $('.payment-cash').find('.btn-payment').text('Submit').removeAttr('disabled');
             $('.payment-message').removeClass('hidden');
         }
     });
@@ -1043,6 +1046,24 @@ $(function() {
                 }
             }
         });
+    });
+
+    $('.search-generate-report').submit(function(e) {
+        e.preventDefault();
+        var getRange = $(this).serializeArray()[0].value;
+        $.ajax({
+            url: '../controls/generate-report-search.php',
+            type: 'POST',
+            data: {dateRange: getRange},
+            success: function(result) {
+                $('.generate-report-ajax').html(result);
+            }
+        });
+    });
+
+    $('.modal-content barcode-form').submit(function(e) {
+        e.preventDefault();
+        alert(123);
     });
 
 });

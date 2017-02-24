@@ -119,6 +119,8 @@
         </div>
         <script src="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/js/jquery-3.1.0.min.js"></script>
         <script src="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/js/bootstrap.min.js"></script>
+        <script src="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/js/moment.min.js"></script>
+        <script src="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/js/bootstrap-daterangepicker.js"></script>
         <script src="<?php echo '/'.basename(dirname(dirname(__DIR__))); ?>/assets/js/app.js"></script>
     </body>
 </html>

@@ -27,11 +27,11 @@
                 $content .= '<td class="text-center">'.$item['brand_priceperbox'].'</td>';
                 $content .= '<td class="text-center">'.$item['brand_priceperpiece'].'</td>';
                 $content .= '<td class="text-center">';
-                    $content .= '<a href="#prod-update" class="btn btn-primary" data-id="'.$item['brand_id'].'">';
+                    $content .= '<a href="#prod-update" class="btn btn-primary btn-sm" data-id="'.$item['brand_id'].'">';
                         $content .= '<span class="glyphicon glyphicon-pencil"></span> &nbsp;Update';
                     $content .= '</a>';
                     $content .= '&nbsp;';
-                    $content .= '<a href="#prod-delete" class="btn btn-danger" data-id="'.$item['brand_id'].'">';
+                    $content .= '<a href="#prod-delete" class="btn btn-danger btn-sm" data-id="'.$item['brand_id'].'">';
                         $content .= '<span class="glyphicon glyphicon-trash"></span> &nbsp;Delete';
                     $content .= '</a>';
                 $content .= '</td>';
