@@ -4,7 +4,9 @@ $(function() {
 
     $('.focus').focus();
 
-    $('.date-range-picker').daterangepicker();
+    if(document.URL.match('admin-home')) {
+        $('.date-range-picker').daterangepicker();
+    }
 
     var getTimeDate = function() {
         var date = new Date(),
