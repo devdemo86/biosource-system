@@ -18,6 +18,33 @@
 
         $text = isset($_GET['barcode']) ? $_GET['barcode'] : 'INVALID BARCODE';
 
+        $barcodeNumber = $text;
+
+        if(is_numeric($barcodeNumber)) {
+
+            switch(strlen($barcodeNumber)) {
+                case 1:
+                    $barcodeNumber = '00000'.$barcodeNumber;
+                    break;
+                case 2:
+                    $barcodeNumber = '0000'.$barcodeNumber;
+                    break;
+                case 3:
+                    $barcodeNumber = '000'.$barcodeNumber;
+                    break;
+                case 4:
+                    $barcodeNumber = '00'.$barcodeNumber;
+                    break;
+                case 5:
+                    $barcodeNumber = '0'.$barcodeNumber;
+                    break;
+                default:
+                    $barcodeNumber = '000000'.$barcodeNumber;
+                    break;
+            }
+
+        }
+
         $color_black = new BCGColor(0, 0, 0);
 
         $color_white = new BCGColor(255, 255, 255);
@@ -38,7 +65,7 @@
 
             $code->setFont($font);
 
-            $code->parse($text);
+            $code->parse($barcodeNumber);
 
         } catch(Exception $exception) {
 
@@ -65,6 +92,7 @@
         header('Content-Disposition: inline; filename="barcode.png"');
 
         $drawing->finish(BCGDrawing::IMG_FORMAT_PNG);
+        
 
     } else {
 

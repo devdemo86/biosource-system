@@ -68,6 +68,55 @@ $(function() {
         $('.barcode-modal').modal();
     });
 
+    $('.generated-barcode-details').change(function() {
+        var getThisValue = $(this).val(),
+            barcodeGenerated = '';
+        if($('.erro-generate-message').is(':visible')) {
+            $('.erro-generate-message').addClass('hidden');
+        }
+        if($.trim(getThisValue) != '') {
+            switch (getThisValue.toString().length) {
+                case 1:
+                    barcodeGenerated = '00000'+ getThisValue;
+                    break;
+                case 2:
+                    barcodeGenerated = '0000'+ getThisValue;
+                    break;
+                case 3:
+                    barcodeGenerated = '000'+ getThisValue;
+                    break;
+                case 4:
+                    barcodeGenerated = '00'+ getThisValue;
+                    break;
+                case 5:
+                    barcodeGenerated = '0'+ getThisValue;
+                    break;
+                default:
+                    barcodeGenerated = '000000'+ getThisValue;
+                    break;
+            }
+        } else {
+            barcodeGenerated = 'No item selected';
+        }
+        $('.barcode-expected').val(barcodeGenerated);
+    });
+
+    $('.barcode-form').submit(function(e) {
+        e.preventDefault();
+        var getVal = $(this).serializeArray()[0].value;
+        if($.trim(getVal) != '') {
+            $(location).attr('href', 'generate-barcode?barcode='+ getVal);
+        } else {
+            if(!$('.erro-generate-message').is(':visible')) {
+                $('.erro-generate-message').removeClass('hidden');
+            }
+        }
+    });
+
+    $('.btn-barcode-generate-type').click(function() {
+        alert(123)
+    });
+
     $('a[href^="#forgot-password"]').click(function(e) {
         e.preventDefault();
         $('.forgot-password-modal').modal();
@@ -1061,11 +1110,6 @@ $(function() {
                 $('.generate-report-ajax').html(result);
             }
         });
-    });
-
-    $('.modal-content barcode-form').submit(function(e) {
-        e.preventDefault();
-        alert(123);
     });
 
 });
