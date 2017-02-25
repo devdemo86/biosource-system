@@ -4,7 +4,7 @@
 
     $username = "root";
 
-    $password = '$rnd-tracking-dnr$';
+    $password = 'webdeveloper';
 
     $database = "biosource_db";
 

@@ -29,7 +29,7 @@
 
                     if((int) $id === 1) {
 
-                        $content .= '<td>
+                        $content .= '<td class="text-center">
                                         <a href="#update" id="'.$row['user_id'].'" class="btn btn-primary btn-sm" data-code="accounts">
                                             <span>Update &nbsp;<span class="glyphicon glyphicon-pencil"></span></span>
                                         </a>

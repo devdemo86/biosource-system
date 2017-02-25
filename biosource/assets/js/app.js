@@ -68,7 +68,7 @@ $(function() {
         $('.barcode-modal').modal();
     });
 
-    $('.generated-barcode-details').change(function() {
+    $('.dynamic-selection-barcode').delegate('.generated-barcode-details', 'change', function() {
         var getThisValue = $(this).val(),
             barcodeGenerated = '';
         if($('.erro-generate-message').is(':visible')) {
@@ -114,7 +114,20 @@ $(function() {
     });
 
     $('.btn-barcode-generate-type').click(function() {
-        alert(123)
+        var getCode = $(this).attr('data-code'),
+            textCode = getCode == 'branded' ? 'Generic' : 'Branded',
+            switchCode = getCode == 'branded' ? 'generic' : 'branded',
+            ajaxUrl = getCode == 'branded' ? '../controls/barcode-available-product.php' : '../controls/barcode-available-brand.php';
+        $(this).attr('data-code', switchCode);
+        $('.switch-text').text(textCode);
+        $.ajax({
+            url: ajaxUrl,
+            type: 'POST',
+            data: {code: getCode},
+            success: function(result) {
+                $('.dynamic-selection-barcode').html('').html(result);
+            }
+        });
     });
 
     $('a[href^="#forgot-password"]').click(function(e) {

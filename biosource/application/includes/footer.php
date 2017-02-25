@@ -93,14 +93,19 @@
                         <h4 class="modal-title text-white">Barcode Generator</h4>
                     </div>
                     <div class="modal-body">
-                        <button type="button" class="btn btn-primary btn-barcode-generate-type" data-code="branded">Branded Barcode &nbsp;<span class="glyphicon glyphicon-refresh"></span></button>
+                        <button type="button" class="btn btn-primary btn-barcode-generate-type" data-code="branded">
+                            <span class="switch-text">Branded</span> Barcode
+                             &nbsp;<span class="glyphicon glyphicon-refresh"></span>
+                         </button>
                         <span class="help-block"></span>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <label>Branded Item:</label>
-                                        <?php require_once('../controls/barcode-avaiable.php'); ?>
+                                        <label><span class="switch-text">Branded</span> Item:</label>
+                                        <div class="dynamic-selection-barcode">
+                                            <?php require_once('../controls/barcode-available-brand.php'); ?>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Barcode Generated:</label>
