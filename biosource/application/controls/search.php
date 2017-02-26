@@ -11,6 +11,12 @@
 
             $id = $_POST['searchId'][0]['value'];
 
+            if(is_numeric($id)) {
+
+                $id = (int) $id;
+
+            }
+
             $type = $_POST['searchType'];
 
             $query = "SELECT * FROM tbl_".$type." t INNER JOIN tbl_generic g ON t.generic_code = g.generic_code INNER JOIN tbl_category c ON ";
