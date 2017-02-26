@@ -259,7 +259,7 @@
                                     $content .= '<td>'.$brand['brand_qtyperpiece'].' / '.$brand['brand_qtyperbox'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($brand['brand_expiration'])).' at '.date('g:i A', strtotime($brand['brand_expiration'])).'</td>';
                                     $content .= '<td>'.$brand['variant_name'].'</td>';
-                                    $content .= '<td><strong>Brand</strong></td>';
+                                    $content .= '<td><strong>Generic</strong></td>';
                                 $content .= '</tr>';
 
                             }
@@ -271,7 +271,7 @@
                                     $content .= '<td>'.$prod['product_qtyperpiece'].' / '.$prod['product_qtyperbox'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($prod['product_expiration'])).' at '.date('g:i A', strtotime($prod['product_expiration'])).'</td>';
                                     $content .= '<td>'.$prod['variant_name'].'</td>';
-                                    $content .= '<td><strong>Product</strong></td>';
+                                    $content .= '<td><strong>Branded</strong></td>';
                                 $content .= '</tr>';
 
                             }
@@ -320,7 +320,7 @@
                                     $content .= '<td>'.$brand['brand_qtyperpiece'].' / '.$brand['brand_qtyperbox'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($brand['brand_expiration'])).' at '.date('g:i A', strtotime($brand['brand_expiration'])).'</td>';
                                     $content .= '<td>'.$brand['variant_name'].'</td>';
-                                    $content .= '<td><strong>Brand</strong></td>';
+                                    $content .= '<td><strong>Generic</strong></td>';
                                 $content .= '</tr>';
 
                             }
@@ -332,7 +332,7 @@
                                     $content .= '<td>'.$prod['product_qtyperpiece'].' / '.$prod['product_qtyperbox'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($prod['product_expiration'])).' at '.date('g:i A', strtotime($prod['product_expiration'])).'</td>';
                                     $content .= '<td>'.$prod['variant_name'].'</td>';
-                                    $content .= '<td><strong>Product</strong></td>';
+                                    $content .= '<td><strong>Branded</strong></td>';
                                 $content .= '</tr>';
 
                             }
@@ -381,7 +381,7 @@
                                     $content .= '<td>'.$brand['brand_qtyperpiece'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($brand['brand_expiration'])).' at '.date('g:i A', strtotime($brand['brand_expiration'])).'</td>';
                                     $content .= '<td>'.$brand['variant_name'].'</td>';
-                                    $content .= '<td><strong>Brand</strong></td>';
+                                    $content .= '<td><strong>Generic</strong></td>';
                                 $content .= '</tr>';
 
                             }
@@ -393,7 +393,7 @@
                                     $content .= '<td>'.$prod['product_qtyperpiece'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($prod['product_expiration'])).' at '.date('g:i A', strtotime($prod['product_expiration'])).'</td>';
                                     $content .= '<td>'.$prod['variant_name'].'</td>';
-                                    $content .= '<td><strong>Product</strong></td>';
+                                    $content .= '<td><strong>Branded</strong></td>';
                                 $content .= '</tr>';
 
                             }
@@ -442,7 +442,7 @@
                                     $content .= '<td>'.$brand['brand_qtyperpiece'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($brand['brand_expiration'])).' at '.date('g:i A', strtotime($brand['brand_expiration'])).'</td>';
                                     $content .= '<td>'.$brand['vaiant_name'].'</td>';
-                                    $content .= '<td><strong>Brand</strong></td>';
+                                    $content .= '<td><strong>Generic</strong></td>';
                                 $content .= '</tr>';
 
                             }
@@ -454,7 +454,7 @@
                                     $content .= '<td>'.$prod['product_qtyperpiece'].'</td>';
                                     $content .= '<td>'.date('F, d Y', strtotime($prod['product_expiration'])).' at '.date('g:i A', strtotime($prod['product_expiration'])).'</td>';
                                     $content .= '<td>'.$prod['variant_name'].'</td>';
-                                    $content .= '<td><strong>Product</strong></td>';
+                                    $content .= '<td><strong>Branded</strong></td>';
                                 $content .= '</tr>';
 
                             }
