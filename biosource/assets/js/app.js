@@ -103,9 +103,20 @@ $(function() {
 
     $('.barcode-form').submit(function(e) {
         e.preventDefault();
-        var getVal = $(this).serializeArray()[0].value;
+        var getVal = $(this).serializeArray()[0].value,
+            getType = $('.btn-barcode-generate-type').attr('data-code');
         if($.trim(getVal) != '') {
-            $(location).attr('href', 'generate-barcode?barcode='+ getVal);
+            $.ajax({
+                url: '../controls/barcode-item-update.php',
+                type: 'POST',
+                data: {id: getVal, type: getType},
+                success: function(result) {
+                    alert(result)
+                    if(result == 'success') {
+                        $(location).attr('href', 'generate-barcode?barcode='+ getVal);
+                    }
+                }
+            });
         } else {
             if(!$('.erro-generate-message').is(':visible')) {
                 $('.erro-generate-message').removeClass('hidden');
@@ -119,6 +130,7 @@ $(function() {
             switchCode = getCode == 'branded' ? 'generic' : 'branded',
             ajaxUrl = getCode == 'branded' ? '../controls/barcode-available-product.php' : '../controls/barcode-available-brand.php';
         $(this).attr('data-code', switchCode);
+        $('.barcode-form').find('input').val('No item selected');
         $('.switch-text').text(textCode);
         $.ajax({
             url: ajaxUrl,
@@ -1007,6 +1019,9 @@ $(function() {
             fromAmountDue = getTotalPrice.replace(',', '').split('.')[0];
         if(parseInt(fromCashier) >= parseInt(fromAmountDue)) {
             var getCheck = (parseInt(fromCashier) - parseInt(fromAmountDue)) * 1.00;
+            if($.trim($('.citizen-id').val()) != '') {
+                fromAmountDue = parseInt(fromAmountDue) - (parseInt(fromAmountDue) * 0.20);
+            }
             $.ajax({
                 url: '../controls/pos-transaction.php',
                 type: 'POST',

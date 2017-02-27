@@ -18,9 +18,13 @@
 
         $cash = 0;
 
+        $citizen = '';
+
         if($result && $result->num_rows > 0) {
 
             while($row = mysqli_fetch_assoc($result)) {
+
+                $citizen = $row['trans_citizen'];
 
                 array_push($affected, $row['trans_id']);
 
@@ -66,11 +70,23 @@
 
             }
 
+            $finaltotal = $cash - $total;
+
+            if(!empty($citizen) || !is_null($citizen)) {
+
+                $finaltotal = $cash - ($total - ($total * 0.20));
+
+            }
+
             $html .= '<span class="trans-id" data-transaction-affted="'.(implode("|", $affected)).'"></span>';
 
             $html .= '<p class="clearfix">';
                 $html .= '<span class="pull-left">Total Amount Due:</span>';
                 $html .= '<span class="pull-right"><strong>P</strong> <span class="total-amount-due">'.number_format($total, 2).'</span></span>';
+            $html .= '</p>';
+            $html .= '<p class="clearfix">';
+                $html .= '<span class="pull-left">Senior Citizen ID: <strong>'.$citizen.'</strong></span>';
+                $html .= '<span class="pull-right">- '.number_format($total * 0.20, 2).'</span>';
             $html .= '</p>';
             $html .= '<div class="clearfix">';
                 $html .= '<div class="border pull-right"></div>';
@@ -81,7 +97,7 @@
             $html .= '</p>';
             $html .= '<p class="clearfix">';
                 $html .= '<span class="pull-left">Change:</span>';
-                $html .= '<span class="pull-right"><strong>P</strong> <span class="amount-change">'.number_format(($cash - $total), 2).'</span></span>';
+                $html .= '<span class="pull-right"><strong>P</strong> <span class="amount-change">'.number_format(($finaltotal), 2).'</span></span>';
             $html .= '</p>';
 
             echo $html;
