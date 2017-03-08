@@ -12,7 +12,19 @@
 
         while($gen = mysqli_fetch_assoc($sqlgen)) {
 
-            echo '<li>'.$gen['generic_name'].'</li>';
+            echo '<li>'.$gen['generic_name'].'
+
+                    <span class="pull-right">
+
+                        <button type="button" class="btn btn-danger btn-remove-cms btn-xs" data-type="generic" data-code="'.$gen['generic_id'].'">
+
+                            <span class="glyphicon glyphicon-trash"></span> Delete
+
+                        </button>
+
+                    </span>
+
+                </li>';
 
         }
 

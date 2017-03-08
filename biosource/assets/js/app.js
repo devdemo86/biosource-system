@@ -1140,4 +1140,20 @@ $(function() {
         });
     });
 
+    $('body').delegate('.btn-remove-cms', 'click', function() {
+        var selector = $(this),
+            getType = selector.attr('data-type'),
+            getId = selector.attr('data-code');
+        $.ajax({
+            url: '../controls/delete-cms.php',
+            type: 'POST',
+            data: {deleteType: [getType, getId]},
+            success: function(result) {
+                if(result == 'success') {
+                    selector.parents('li').remove();
+                }
+            }
+        });
+    });
+
 });

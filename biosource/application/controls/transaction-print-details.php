@@ -72,32 +72,74 @@
 
             $finaltotal = $cash - $total;
 
-            if(!empty($citizen) || !is_null($citizen)) {
+            if(!empty($citizen)) {
 
                 $finaltotal = $cash - ($total - ($total * 0.20));
 
             }
 
+            $vat = ($finaltotal / 1.12) * 0.12;
+
+            $initial = $finaltotal - $vat;
+
             $html .= '<span class="trans-id" data-transaction-affted="'.(implode("|", $affected)).'"></span>';
 
             $html .= '<p class="clearfix">';
-                $html .= '<span class="pull-left">Total Amount Due:</span>';
+
+                $html .= '<span class="pull-left">Total:</span>';
+
+                $html .= '<span class="pull-right"><strong>P</strong> <span class="total-amount-due">'.number_format($initial, 2).'</span></span>';
+
+            $html .= '</p>';
+
+            $html .= '<p class="clearfix" style="padding-bottom:5px;border-bottom:2px solid #8c8c8c;">';
+
+                $html .= '<span class="pull-left">VAT:</span>';
+
+                $html .= '<span class="pull-right"><strong>P</strong> <span class="total-amount-due">'.number_format($vat, 2).'</span></span>';
+
+            $html .= '</p>';
+
+            $html .= '<p class="clearfix">';
+
+                $html .= '<span class="pull-left">Total Amount Due <small>(VAT Included)</small>:</span>';
+
                 $html .= '<span class="pull-right"><strong>P</strong> <span class="total-amount-due">'.number_format($total, 2).'</span></span>';
+
             $html .= '</p>';
-            $html .= '<p class="clearfix">';
-                $html .= '<span class="pull-left">Senior Citizen ID: <strong>'.$citizen.'</strong></span>';
-                $html .= '<span class="pull-right">- '.number_format($total * 0.20, 2).'</span>';
-            $html .= '</p>';
+
+            if(!empty($citizen)) {
+
+                $html .= '<p class="clearfix">';
+
+                    $html .= '<span class="pull-left">Senior Citizen ID: <strong>'.$citizen.'</strong></span>';
+
+                    $html .= '<span class="pull-right">- '.number_format($total * 0.20, 2).'</span>';
+
+                $html .= '</p>';
+
+            }
+
             $html .= '<div class="clearfix">';
+
                 $html .= '<div class="border pull-right"></div>';
+
             $html .= '</div>';
+
             $html .= '<p class="clearfix">';
+
                 $html .= '<span class="pull-left">Cash Tender:</span>';
+
                 $html .= '<span class="pull-right" style="border-bottom:2px solid #8c8c8c;"><strong>P</strong> <span class="amount">'.number_format($cash, 2).'</span></span>';
+
             $html .= '</p>';
+
             $html .= '<p class="clearfix">';
+
                 $html .= '<span class="pull-left">Change:</span>';
+
                 $html .= '<span class="pull-right"><strong>P</strong> <span class="amount-change">'.number_format(($finaltotal), 2).'</span></span>';
+
             $html .= '</p>';
 
             echo $html;

@@ -12,7 +12,19 @@
 
         while($variants = mysqli_fetch_assoc($sqlvar)) {
 
-            echo '<li>'.$variants['variant_name'].'</li>';
+            echo '<li>'.$variants['variant_name'].'
+
+                    <span class="pull-right">
+
+                        <button type="button" class="btn btn-danger btn-remove-cms btn-xs" data-type="variant" data-code="'.$variants['variant_id'].'">
+
+                            <span class="glyphicon glyphicon-trash"></span> Delete
+
+                        </button>
+
+                    </span>
+
+                </li>';
 
         }
 
